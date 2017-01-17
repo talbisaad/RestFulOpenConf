@@ -18,7 +18,7 @@
 		<br> <br> <span class="ttl">Inscription</span><br> <br>
 		<fieldset>
 			<legend>Informations</legend>
-			<form action="ServletInscription?action=SaveResponsable" method="POST">
+			<form action="SignUpServlet?action=SaveUser" method="POST">
 				<table width="70%">
 
 					<tr>

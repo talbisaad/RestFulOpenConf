@@ -61,6 +61,11 @@ public class User {
 	public void setProfile(String profile) {
 		this.profile = profile;
 	}
+
+	@Override
+	public String toString() {
+		return "User [userName=" + userName + ", userLastName=" + userLastName + "]";
+	}
 	
 	
 }

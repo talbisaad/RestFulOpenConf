@@ -7,16 +7,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import services.SignUpService;
+import services.SignUpServiceImpl;
+
 /**
  * Servlet implementation class SignUpServlet
  */
 @WebServlet("/SignUpServlet")
 public class SignUpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+	private SignUpService signUpService;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
+	
+	@Override
+	public void init() throws ServletException {
+		// TODO Auto-generated method stub
+	 signUpService= new SignUpServiceImpl();
+		
+		
+	}
+	
     public SignUpServlet() {
         super();
         // TODO Auto-generated constructor stub
@@ -36,6 +50,8 @@ public class SignUpServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		signUpService.SaveUser(request);
 		doGet(request, response);
 	}
 

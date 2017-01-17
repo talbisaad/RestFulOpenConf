@@ -19,25 +19,60 @@
 			<li><a href="#" class="dcnx">Deconnexion</a></li>
 		</ul>
 	</div>
-	
-	<div class="inner"> 
-		<div class="opr">
+	<div class="inner">
+	<div class="opr">
 			<jsp:include page="menuAdmin.jsp"></jsp:include>
 		</div>
-		<br> <br> <span class="ttl">List of conferences</span><br>
+		<br> <br> <span class="ttl">Search submission</span><br>
+		<br>
+	<fieldset>
+			<legend>Search</legend>
+			<form action="ServletEtudiant?action=GestionClass" method="POST">
+				<div>
+
+					<table width="70%">
+
+						<tr>
+							<td>E-mail</td>
+							<td>:</td>
+							<td><input type="text" class="inpt" name="NomClasse"
+								size="30"></td>
+
+							 
+						</tr>
+
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td><input type="submit" class="submit" value="Rechercher" />
+							</td>
+						</tr>
+
+					</table>
+				</div>
+			</form>
+		</fieldset>
+	
+	
+		
+		<br> <br> <span class="ttl">List of conference</span><br>
 		<br>
 		<br>
 		<div class="tables">
 			<table cellpadding="0" cellspacing="0" class="tabs">
 				<thead>
 					<tr>
-						<td>Conference Name</td>
-						<td>Subject</td>
-						<td>Day</td>
-						<td>Time</td>
-						<td>Participants</td>
-						<td>details</td>
-						<td>Participate</td>
+						<td>Submission Title</td>
+						<td>Conference</td>
+						<td>keyword</td>
+						<td>Status</td>
+						<td>Modify</td>
+						<td>Delete</td>  
 					</tr>
 				</thead>
 				<tbody>

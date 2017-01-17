@@ -17,7 +17,7 @@
             <table>
                <tr>
                   <td>e-mail</td>
-                  <td><input type="text" name="username"  class="input username" autocomplete="off" /></td>
+                  <td><input type="text" name="username"  class="input username"  /></td>
                </tr>
                <tr>
                   <td>Mot de Passe</td>

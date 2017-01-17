@@ -4,4 +4,46 @@
   <welcome-file-list>
     <welcome-file>DisplayConference.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <servlet-name>SignUpServlet</servlet-name>
+    <servlet-class>controllers.SignUpServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SignUpServlet</servlet-name>
+    <url-pattern>/SignUp</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>SubmissionServlet</servlet-name>
+    <servlet-class>controllers.SubmissionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SubmissionServlet</servlet-name>
+    <url-pattern>/DisplaySubmission</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SubmissionServlet</servlet-name>
+    <url-pattern>/ManageSubmission</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SubmissionServlet</servlet-name>
+    <url-pattern>/SubmissionList</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ConferenceServlet</servlet-name>
+    <servlet-class>controllers.ConferenceServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ConferenceServlet</servlet-name>
+    <url-pattern>/DisplayConference</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ConferenceServlet</servlet-name>
+    <url-pattern>/ManageConference</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ConferenceServlet</servlet-name>
+    <url-pattern>/ConferenceList</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -24,6 +24,7 @@
 		<div class="opr">
 			<jsp:include page="menuAdmin.jsp"></jsp:include>
 		</div>
+		 <form action="ConferenceList" method="POST">
 		<br> <br> <span class="ttl">List of conferences</span><br>
 		<br>
 		<br>
@@ -36,31 +37,24 @@
 						<td>Day</td>
 						<td>Time</td>
 						<td>Participants</td>
-						<td>details</td>
-						<td>Participate</td>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach begin="0" end="${lengh}" step="1" varStatus="loopCounter" items="${listclasse}" var="c">
+					<c:forEach begin="0" end="${lengh}" step="1" varStatus="loopCounter" items="${conferencelist}" var="c">
 						<tr>
 
-							<td ><c:out  value="${c.nomClasse}"/></td>
-							<td><c:out value="${c.filiere.nom}"/></td>
-							<td><c:out value="${c.niveau}"/></td>
-							<td><c:out value="${c.anneeUniversitaire}" /></td>
-							<td><form action="ServletClass?action=ModifierClassFromListClass" method="POST"><button style="border:0px solid black; background-color: transparent;" type="submit" name="Modifier"><img alt="modify" class="modifyicone"
-								src="CSS/modify.png"></button>
-								<input type="hidden" name="IdRow" value="${c.idClasse}"/>
-								</form></td>
-							<td><form action="ServletClass?action=SupprimerClass" method="POST"><button style="border:0px solid black; background-color: transparent;" type="submit" name="Modifier"> <img alt="delete" class="deleteicone"
-								src="CSS/delete.png"></button>
-							  <input type="hidden" name="IdRow" value="${c.idClasse}"/>
-								</form></td>
+							<td ><c:out  value="${c.conferanceName}"/></td>
+							<td><c:out value="${c.conferenceSubject}"/></td>
+							<td><c:out value="${c.time}"/></td>
+							<td><c:out value="${c.participantNumber}"/></td>
+							<td><c:out value="${c.actualparticipantNumber}"/></td>
+							
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</div>
+		</form>
 	</div>
 </body>
 </html>

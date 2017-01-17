@@ -27,8 +27,8 @@ public class SignUpServlet extends HttpServlet {
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
 	 signUpService= new SignUpServiceImpl();
-		
-		
+	 
+				
 	}
 	
     public SignUpServlet() {

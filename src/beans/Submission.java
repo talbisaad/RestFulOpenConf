@@ -9,6 +9,10 @@ private String keywords;
 private String submissionAbstract;
 private String status;
 
+private User user;
+
+private Conference conference;
+
 
 
 public Submission(int idSubmission, String submissionTitle, String submissionTheme, String keywords,
@@ -23,10 +27,10 @@ public Submission(int idSubmission, String submissionTitle, String submissionThe
 }
 
 
-
-
 public Submission() {
 	super();
+	this.user=new User();
+	this.conference= new Conference();
 	// TODO Auto-generated constructor stub
 }
 
@@ -72,6 +76,35 @@ public void setStatus(String status) {
 }
 
 
+
+public User getUser() {
+	return this.user;
+}
+
+
+
+public Conference getConference() {
+	return conference;
+}
+
+
+public void setConference(Conference conference) {
+	this.conference = conference;
+}
+
+
+
+public void setUser(User user) {
+	this.user = user;
+}
+
+@Override
+public String toString() {
+	return "Submission [submissionTitle=" + submissionTitle + ", submissionTheme=" + submissionTheme + ", keywords="
+			+ keywords + ", submissionAbstract=" + submissionAbstract + "]";
+}
+
+ 
 
 
 

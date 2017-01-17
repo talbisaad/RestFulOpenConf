@@ -28,7 +28,7 @@
 			<br>
 
 			
-			<form action="ServletClass?action=CreerClass" method="POST">
+			<form action="SubmissionServlet?action=createSubmission" method="POST">
 				
 			  <fieldset>
 			  <legend>General information</legend>
@@ -36,32 +36,32 @@
 					<tr>
 						<td>Conference</td>
 						<td>:</td>
-						<td><select class="selectfilter filterSrch" name="filiere"
+						<td><select class="selectfilter filterSrch" name="conferenceSubject"
 							id="filtersh">
-								<c:forEach items="${listfiliere}" var="f">
-									<option>${f.nom}</option>
+								<c:forEach items="${conferencelist}" var="f">
+									<option>${f.conferenceSubject}</option>
 								</c:forEach>
 						</select></td>
 
 						<td>Submission Title</td>
 						<td>:</td>
-						<td><input type="text" name="NomClasse" size="30" class="inpt"></td>
+						<td><input type="text" name="submissionTitle" size="30" class="inpt"></td>
 					</tr>
 					
 					<tr>
 						<td>Email</td>
 						<td>:</td>
-						<td><input type="text" name="NomClasse" size="30" class="inpt"></td>
+						<td><input type="text" name="mail" size="30" class="inpt"></td>
 					</tr>
 					</table>
 					<table>
 					<tr>
 						<td>Submission theme</td>
 						<td>:</td>
-						<td><input type="radio" name="droit" value="CD" />Programming</td>
-						<td><input type="radio" name="droit" value="RF"/>Classic papers</td>
-						<td><input type="radio" name="droit" value="AD"/>Networking</td>
-						<td><input type="radio" name="droit" value="AD"/>Computer science</td>															 
+						<td><input type="radio" name="submissionTheme" value="Programming" />Programming</td>
+						<td><input type="radio" name="submissionTheme" value="Classic papers"/>Classic papers</td>
+						<td><input type="radio" name="submissionTheme" value="Networking"/>Networking</td>
+						<td><input type="radio" name="submissionTheme" value="Computer science"/>Computer science</td>															 
 					</tr>
 					
 
@@ -80,12 +80,12 @@
 				<tr>
 				<td>Keywords</td>
 				<td>:</td>
-				<td><input type="text" name="NomClasse" size="30" class="inpt"></td>
+				<td><input type="text" name="keywords" size="30" class="inpt"></td>
 				</tr>
 				<tr>
 				<td>Abstract</td>
 				<td>:</td>
-				<td><textarea class="inpt" name="NomClasse" rows="10" cols="50" class="inpt"></textarea></td>
+				<td><textarea class="inpt" name="submissionAbstract" rows="10" cols="50" class="inpt"></textarea></td>
 				</tr>
 				<tr>
 				<td>File</td>

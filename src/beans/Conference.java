@@ -1,6 +1,5 @@
 package beans;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 public class Conference {
@@ -8,7 +7,7 @@ public class Conference {
 	private int idConference;
 	private String conferanceName;
 	private String conferenceSubject;
-	private Date  time;
+	private String  time;
 	private int participantNumber;
 	private int actualparticipantNumber;
 	private ArrayList<Submission> submissionList;
@@ -16,7 +15,7 @@ public class Conference {
 	
 
 
-	public Conference(int idConference, String conferanceName, String conferenceSubject, Date time,
+	public Conference(int idConference, String conferanceName, String conferenceSubject, String time,
 			int participantNumber, int actualparticipantNumber) {
 		super();
 		this.idConference = idConference;
@@ -52,10 +51,10 @@ public class Conference {
 	public void setConferenceSubject(String conferenceSubject) {
 		this.conferenceSubject = conferenceSubject;
 	}
-	public Date getTime() {
+	public String getTime() {
 		return time;
 	}
-	public void setTime(Date time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 	public int getParticipantNumber() {

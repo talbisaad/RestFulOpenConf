@@ -14,7 +14,6 @@ public class SubmissionServiceImpl implements SubmissionService{
 		 submission= new Submission();
 	 }
 
-	@Override
 	public void createSubmission(HttpServletRequest request) {
 		
 		submission.getConference().setConferenceSubject(request.getParameter("conferenceSubject"));

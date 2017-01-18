@@ -13,8 +13,7 @@ public class ConferenceServiceImpl implements ConferenceService {
 	}
 
 	
-	//affichage de la liste des conférence 
-	@Override
+	//affichage de la liste des confï¿½rence 
 	public ArrayList<Conference> DisplayConferenceList() {
 
 		Conference c1 = new Conference(0, "Name1", "Sub1", "20h30", 3, 0);

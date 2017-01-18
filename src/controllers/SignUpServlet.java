@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -52,7 +53,7 @@ public class SignUpServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		signUpService.SaveUser(request);
-		doGet(request, response);
+		//doGet(request, response);
 	}
 
 }

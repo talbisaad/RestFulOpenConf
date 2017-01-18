@@ -37,9 +37,7 @@ public class SubmissionServlet extends HttpServlet {
        
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String page = request.getRequestURL().substring(31);
@@ -50,8 +48,7 @@ public class SubmissionServlet extends HttpServlet {
 			conferenceService= new ConferenceServiceImpl();
 			conferenceList=conferenceService.DisplayConferenceList();
 			request.setAttribute("conferencelist", conferenceList);
-			request.setAttribute("lengh",conferenceList.size());
-			
+			request.setAttribute("lengh",conferenceList.size());	
 			this.getServletContext().getRequestDispatcher("/DisplaySubmission.jsp").forward(request, response);
 		}
 		
@@ -63,19 +60,16 @@ public class SubmissionServlet extends HttpServlet {
 		
 		
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
 		String action = request.getParameter("action");
 		
+		//Création d'une submission
 		if(action.equals(CREATESUBMISSION)){
 			submissionService.createSubmission(request);
-			
-			this.getServletContext().getRequestDispatcher("/ManageSubmission.jsp").forward(request, response);
+			HttpServletRequest requestForDisplay=	submissionService.displaySubmission(request);			
+			this.getServletContext().getRequestDispatcher("/DisplaySubmission.jsp").forward(requestForDisplay, response);
 		}
 		
 		

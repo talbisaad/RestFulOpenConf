@@ -21,86 +21,93 @@
 	<div class="inner">
 		<div class="opr" id="importFil">
 			<jsp:include page="menuAdmin.jsp"></jsp:include>
-	</div>
+		</div>
 
 		<div id="creation">
 			<br> <br> <span class="ttl">Create submission</span><br>
 			<br>
 
-			
-			<form action="SubmissionServlet?action=createSubmission" method="POST">
-				
-			  <fieldset>
-			  <legend>General information</legend>
-				<table width="70%">
-					<tr>
-						<td>Conference</td>
-						<td>:</td>
-						<td><select class="selectfilter filterSrch" name="conferenceSubject"
-							id="filtersh">
-								<c:forEach items="${conferencelist}" var="f">
-									<option>${f.conferenceSubject}</option>
-								</c:forEach>
-						</select></td>
 
-						<td>Submission Title</td>
-						<td>:</td>
-						<td><input type="text" name="submissionTitle" size="30" class="inpt"></td>
-					</tr>
-					
-					<tr>
-						<td>Email</td>
-						<td>:</td>
-						<td><input type="text" name="mail" size="30" class="inpt"></td>
-					</tr>
+			<form action="SubmissionServlet?action=createSubmission"
+				method="POST">
+
+				<fieldset>
+					<legend>General information</legend>
+					<table width="70%">
+						<tr>
+							<td>Conference</td>
+							<td>:</td>
+							<td><select class="selectfilter filterSrch"
+								name="conferenceSubject" id="filtersh">
+									<c:forEach items="${conferencelist}" var="f">
+										<option>${f.conferenceSubject}</option>
+									</c:forEach>
+							</select></td>
+
+							<td>Submission Title</td>
+							<td>:</td>
+							<td><input type="text" name="submissionTitle" size="30"
+								class="inpt"></td>
+						</tr>
+
+						<tr>
+							<td>Email</td>
+							<td>:</td>
+							<td><input type="text" name="mail" size="30" class="inpt"></td>
+						</tr>
 					</table>
 					<table>
-					<tr>
-						<td>Submission theme</td>
-						<td>:</td>
-						<td><input type="radio" name="submissionTheme" value="Programming" />Programming</td>
-						<td><input type="radio" name="submissionTheme" value="Classic papers"/>Classic papers</td>
-						<td><input type="radio" name="submissionTheme" value="Networking"/>Networking</td>
-						<td><input type="radio" name="submissionTheme" value="Computer science"/>Computer science</td>															 
-					</tr>
-					
+						<tr>
+							<td>Submission theme</td>
+							<td>:</td>
+							<td><input type="radio" name="submissionTheme"
+								value="Programming" />Programming</td>
+							<td><input type="radio" name="submissionTheme"
+								value="Classic papers" />Classic papers</td>
+							<td><input type="radio" name="submissionTheme"
+								value="Networking" />Networking</td>
+							<td><input type="radio" name="submissionTheme"
+								value="Computer science" />Computer science</td>
+						</tr>
 
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
 
-				</table>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+
+					</table>
 				</fieldset>
-				
+
 				<fieldset>
-				<legend>Contente</legend>
-				<table width="70%">
-				<tr>
-				<td>Keywords</td>
-				<td>:</td>
-				<td><input type="text" name="keywords" size="30" class="inpt"></td>
-				</tr>
-				<tr>
-				<td>Abstract</td>
-				<td>:</td>
-				<td><textarea class="inpt" name="submissionAbstract" rows="10" cols="50" class="inpt"></textarea></td>
-				</tr>
-				<tr>
-				<td>File</td>
-				<td>:</td>
-				<td><input type="file" id="fichier"
-						name="fichier" value="" /></td>
-				</tr>
-				<tr id="lign">
-						<td></td>
-						<td></td>
-						<td><input type="submit" name="valider" value="Valider"
-							class="submit" /> <input type="reset" value="Réinitialiser"
-							class="submit" name="renit" /></td>
-					</tr>
-				</table>				
+					<legend>Contente</legend>
+					<table width="70%">
+						<tr>
+							<td>Keywords</td>
+							<td>:</td>
+							<td><input type="text" name="keywords" size="30"
+								class="inpt"></td>
+						</tr>
+						<tr>
+							<td>Abstract</td>
+							<td>:</td>
+							<td><textarea class="inpt" name="submissionAbstract"
+									rows="10" cols="50" class="inpt"></textarea></td>
+						</tr>
+						<tr>
+							<td>File</td>
+							<td>:</td>
+							<td><input type="file" id="fichier" name="fichier" value="" /></td>
+						</tr>
+						<tr id="lign">
+							<td></td>
+							<td></td>
+							<td><input type="submit" name="valider" value="Valider"
+								class="submit" /> <input type="reset" value="Réinitialiser"
+								class="submit" name="renit" /></td>
+						</tr>
+					</table>
 				</fieldset>
 			</form>
 
@@ -114,83 +121,81 @@
 	<div class="inner" id="affichage" style="display: none">
 		<br> <br> <span class="ttl">Submission</span><br> <br>
 		<form action="Controle?act=ajouteremp" method="POST">
- 			<fieldset>
-			  <legend>General information</legend>
+			<fieldset>
+				<legend>General information</legend>
 				<table width="70%">
 					<tr>
 						<td>Conference</td>
 						<td>:</td>
-						<td><label class="selectfilter filterSrch" id="filtersh" ><c:out
-								value="${classe.nomClasse}" /></label></td>
+						<td><label class="selectfilter filterSrch" id="filtersh"><c:out
+									value="${submission.conference.conferenceSubject}" /></label></td>
 
 						<td>Submission Title</td>
 						<td>:</td>
-						<td><label class="selectfilter filterSrch" id="filtersh" ><c:out
-								value="${classe.nomClasse}" /></label></td>
+						<td><label class="selectfilter filterSrch" id="filtersh"><c:out
+									value="${submission.submissionTitle}" /></label></td>
 					</tr>
-					
+
 					<tr>
 						<td>Email</td>
 						<td>:</td>
-						<td><label class="selectfilter filterSrch" id="filtersh" ><c:out
-								value="${classe.nomClasse}" /></label></td>
+						<td><label class="selectfilter filterSrch" id="filtersh"><c:out
+									value="${submission.user.mail}" /></label></td>
 					</tr>
-					
+
 					<tr>
 						<td>Submission theme</td>
 						<td>:</td>
-						<td><input type="radio" name="droit" value="CD" />Programming</td>
-						<td><input type="radio" name="droit" value="RF"/>Classic papers</td>
-						<td><input type="radio" name="droit" value="AD"/>Networking</td>
-						<td><input type="radio" name="droit" value="AD"/>Computer science</td>															 
+						<td><label class="selectfilter filterSrch" id="filtersh"><c:out
+									value="${submission.submissionTheme}" /></label></td>
 					</tr>
-					
+
 
 					<tr>
 						<td></td>
 						<td></td>
 						<td></td>
 					</tr>
-					
+
 
 				</table>
-				</fieldset>
-				
-				<fieldset>
+			</fieldset>
+
+			<fieldset>
 				<legend>Contente</legend>
 				<table width="70%">
-				<tr>
-				<td>Keywords</td>
-				<td>:</td>
-				<td><label class="selectfilter filterSrch" id="filtersh" ><c:out
-								value="${classe.nomClasse}" /></label></td>
-				</tr>
-				<tr>
-				<td>Abstract</td>
-				<td>:</td>
-				<td><textarea class="inpt" name="NomClasse" rows="10" cols="50" class="inpt"></textarea></td>
-				</tr>
-				<tr>
-				<td>File</td>
-				<td>:</td>
-				<td><input type="file" id="fichier"
-						name="fichier" value="" /></td>
-				</tr>
-				
-				</table>				
-				</fieldset>		</form>
+					<tr>
+						<td>Keywords</td>
+						<td>:</td>
+						<td><label class="selectfilter filterSrch" id="filtersh"><c:out
+									value="${submission.keywords}" /></label></td>
+					</tr>
+					<tr>
+						<td>Abstract</td>
+						<td>:</td>
+						<td><label class="selectfilter filterSrch" id="filtersh"><c:out
+									value="${submission.submissionAbstract}" /></label></td>
+					</tr>
+					<tr>
+						<td>File</td>
+						<td>:</td>
+						<td><input type="file" id="fichier" name="fichier" value="" /></td>
+					</tr>
+
+				</table>
+			</fieldset>
+		</form>
 		<table>
 			<tr>
 				<td>
-					<form action="ServletClass?action=ModifierClass" method="POST">
+					<form action="SubmissionServlet?action=UpdateSubmission" method="POST">
 						<input type="submit" name="Modifier" value="Modifier"
 							class="submit" />
 					</form>
 				</td>
 				<td>
-					<form action="ServletClass?action=Annuler" method="POST">
-						<input type="submit" name="Annuler" value="Annuler"
-							class="submit" />
+					<form action="SubmissionServlet?action=Cancel" method="POST">
+						<input type="submit" name="Annuler" value="Annuler" class="submit" />
 
 					</form>
 				</td>

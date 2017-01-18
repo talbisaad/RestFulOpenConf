@@ -7,7 +7,7 @@ import org.json.JSONObject;
 
 import beans.User;
 import utility.ConnectRest;
-import utility.Utile;
+import utility.UtileUser;
 
 public class SignUpServiceImpl implements SignUpService{
 
@@ -28,7 +28,7 @@ public class SignUpServiceImpl implements SignUpService{
 
 		JSONObject connexion = ConnectRest.connect();
 		System.out.println("connexion +++ --->" +connexion);
-		JSONObject responseAddUser = Utile.addUser(user, connexion);
+		JSONObject responseAddUser = UtileUser.addUser(user, connexion);
 		
 	
 		System.out.println(user.toString());

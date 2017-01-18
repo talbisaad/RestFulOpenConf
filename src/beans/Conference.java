@@ -4,19 +4,19 @@ import java.util.ArrayList;
 
 public class Conference {
 	
-	private int idConference;
+	private String idConference;
 	private String conferanceName;
 	private String conferenceSubject;
 	private String  time;
 	private int participantNumber;
-	private int actualparticipantNumber;
+	private String actualparticipantNumber;
 	private ArrayList<Submission> submissionList;
 	
 	
 
 
-	public Conference(int idConference, String conferanceName, String conferenceSubject, String time,
-			int participantNumber, int actualparticipantNumber) {
+	public Conference(String idConference, String conferanceName, String conferenceSubject, String time,
+			int participantNumber, String actualparticipantNumber) {
 		super();
 		this.idConference = idConference;
 		this.conferanceName = conferanceName;
@@ -33,11 +33,17 @@ public class Conference {
 	}
 
 
-	public int getIdConference() {
+	public Conference(String idConference2, String conferanceName2, String conferenceSubject2, String time2,
+			String string, String actualparticipantNumber2) {
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public String getIdConference() {
 		return idConference;
 	}
-	public void setIdConference(int idConference) {
-		this.idConference = idConference;
+	public void setIdConference(String conferenceId) {
+		this.idConference = conferenceId;
 	}
 	public String getConferanceName() {
 		return conferanceName;
@@ -63,11 +69,11 @@ public class Conference {
 	public void setParticipantNumber(int participantNumber) {
 		this.participantNumber = participantNumber;
 	}
-	public int getActualparticipantNumber() {
+	public String getActualparticipantNumber() {
 		return actualparticipantNumber;
 	}
-	public void setActualparticipantNumber(int actualparticipantNumber) {
-		this.actualparticipantNumber = actualparticipantNumber;
+	public void setActualparticipantNumber(String number_of_participants__c) {
+		this.actualparticipantNumber = number_of_participants__c;
 	}
 	
 	public ArrayList<Submission> getSubmissionList() {

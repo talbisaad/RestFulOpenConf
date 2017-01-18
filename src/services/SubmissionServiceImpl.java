@@ -11,6 +11,8 @@ import utility.UtileSubmission;
 public class SubmissionServiceImpl implements SubmissionService{
 	
 	private Submission submission;
+	private static final String TRUE="true";
+	private static final String FALSE="false";
 	
 	 public SubmissionServiceImpl() {
 		 submission= new Submission();
@@ -32,8 +34,19 @@ public class SubmissionServiceImpl implements SubmissionService{
 		
 		System.out.println("responseAddSubmission --> "+ responseAddSubmission);
 		
+		
 	
 		
 	}
+
+	public HttpServletRequest displaySubmission(HttpServletRequest request) {
+		
+		request.setAttribute("submission", this.submission);
+		request.setAttribute("creation", FALSE );
+		request.setAttribute("affichage", TRUE);
+		
+		return request;
+	}
+ 
 
 }

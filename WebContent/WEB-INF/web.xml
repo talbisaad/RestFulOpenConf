@@ -29,6 +29,10 @@
     <servlet-name>SubmissionServlet</servlet-name>
     <url-pattern>/SubmissionList</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SubmissionServlet</servlet-name>
+    <url-pattern>/ReviewSubmission</url-pattern>
+  </servlet-mapping>
   
   <servlet>
     <servlet-name>ConferenceServlet</servlet-name>

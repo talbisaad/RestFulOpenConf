@@ -37,9 +37,7 @@ public class SubmissionServiceImpl implements SubmissionService{
 		
 		System.out.println("responseAddSubmission --> "+ responseAddSubmission);
 		
-		
 	
-		
 	}
 
 	
@@ -56,18 +54,23 @@ public class SubmissionServiceImpl implements SubmissionService{
 		
 		String conferenceSubject=request.getParameter("conferenceSubject");
 		
+		JSONObject connexion = ConnectRest.connect();
+		//ArrayList<Submission> SubmissionList = UtileSubmission.getsublmissionList(conferenceSubject, connexion);
+
+
 		
-		//Faut que tu récupere la liste des submission dont conferenceSubject = conferenceSubject
-		Submission sub1 = new Submission(0, "Titre1", "Theme", "keyw", "test", "ok");
-		Submission sub2 = new Submission(0, "Titre2", "Theme", "keyw", "test", "ok");
-		Submission sub3 = new Submission(0, "Titre3", "Theme", "keyw", "test", "ok");
+		System.out.println("get conferenceName ++++ "+ conferenceSubject );
+		//String conferenceId = request.getParameter(arg0)
 		
-		ArrayList<Submission> SubmissionList= new ArrayList<Submission>();
 		
-		SubmissionList.add(sub1);
-		SubmissionList.add(sub2);
-		SubmissionList.add(sub3);
-		return SubmissionList;
+		
+		//Faut que tu rï¿½cupere la liste des submission dont conferenceSubject = conferenceSubject
+		//Submission sub1 = new Submission(0, "Titre1", "Theme", "keyw", "test", "ok");
+		
+		//ArrayList<Submission> SubmissionList= new ArrayList<Submission>();
+		
+		//SubmissionList.add(sub1);
+		return UtileSubmission.getsublmissionList(conferenceSubject, connexion);
 	}
  
 

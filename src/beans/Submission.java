@@ -2,7 +2,7 @@ package beans;
 
 public class Submission {
 	
-private int idSubmission;
+private String idSubmission;
 private String submissionTitle;
 private String submissionTheme;
 private String keywords;
@@ -15,7 +15,7 @@ private Conference conference;
 
 
 
-public Submission(int idSubmission, String submissionTitle, String submissionTheme, String keywords,
+public Submission(String idSubmission, String submissionTitle, String submissionTheme, String keywords,
 		String submissionAbstract, String status) {
 	super();
 	this.idSubmission = idSubmission;
@@ -35,11 +35,11 @@ public Submission() {
 }
 
 
-public int getIdSubmission() {
+public String getIdSubmission() {
 	return idSubmission;
 }
-public void setIdSubmission(int idSubmission) {
-	this.idSubmission = idSubmission;
+public void setIdSubmission(String submissionId) {
+	this.idSubmission = submissionId;
 }
 public String getSubmissionTitle() {
 	return submissionTitle;

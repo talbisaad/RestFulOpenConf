@@ -82,7 +82,7 @@
 						<tr>
 
 							<td ><c:out  value="${c.submissionTitle}"/></td>
-							<td><c:out value="${c.conference.nom}"/></td>
+							<td><c:out value="${c.conference.conferanceName}"/></td>
 							<td><c:out value="${c.submissionTheme}"/></td>
 							<td><c:out value="${c.status}" /></td>
 							<%-- <td><form action="SubmissionServlet?action=GetSubmissions" method="POST"><button style="border:0px solid black; background-color: transparent;" type="submit" name="Modifier"><img alt="modify" class="modifyicone"

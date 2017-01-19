@@ -7,6 +7,8 @@ import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.util.EntityUtils;
@@ -109,17 +111,66 @@ public class UtileConference {
             npe.printStackTrace();
         }
         
-        
-        
 		return null;
-        
-        
 
-		
 		
 	}
 
-	
+
+	public static JSONObject addConference(Conference conference, JSONObject data) {
+
+		try {
+			baseUri = data.getString("baseUri");
+			System.out.println("DATA --> " + baseUri);
+			loginAccessToken = data.getString("loginAccessToken");
+		} catch (JSONException jsonException) {
+			jsonException.printStackTrace();
+		}
+
+		oauthHeader = new BasicHeader("Authorization", "OAuth " + loginAccessToken);
+		String uri = baseUri + "/sobjects/User_App__c/";
+
+		JSONObject c = new JSONObject();
+		c.put("Name", conference.getConferanceName());
+		c.put("Subject__c", conference.getConferenceSubject());
+		c.put("Number_of_participants__c", conference.getParticipantNumber());
+
+
+		try {
+			HttpClient httpClient = HttpClientBuilder.create().build();
+
+			HttpPost httpPost = new HttpPost(uri);
+			httpPost.addHeader(oauthHeader);
+			httpPost.addHeader(prettyPrintHeader);
+
+			StringEntity body = new StringEntity(c.toString(1));
+			body.setContentType("application/json");
+			httpPost.setEntity(body);
+
+			// Allons-y !
+			HttpResponse response = httpClient.execute(httpPost);
+			// Process the results
+			int statusCode = response.getStatusLine().getStatusCode();
+			if (statusCode == 201) {
+				String response_string = EntityUtils.toString(response.getEntity());
+				JSONObject json = new JSONObject(response_string);
+				// get ID of new record has been added 
+				conferenceId = json.getString("id");
+				System.out.println("ID  de new USER: " + conferenceId + "");
+			} else {
+				System.out.println("Insertion unsuccessful. Status code returned is " + statusCode);
+			}
+
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		} catch (NullPointerException npe) {
+			npe.printStackTrace();
+		}
+
+		return null;
+
+	}
+
 	
 
 }

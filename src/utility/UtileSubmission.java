@@ -1,15 +1,18 @@
 package utility;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -17,7 +20,12 @@ import beans.Submission;
 
 public class UtileSubmission {
 	
+	public static ArrayList<Submission> submissionList = new ArrayList<Submission>();
+	public static Submission submission;
+	
 	public static String submissionId;
+	public static String name;
+	public static String subject;
 	public static String baseUri;
 	private static String loginAccessToken;
 	private static Header oauthHeader;
@@ -79,6 +87,81 @@ public class UtileSubmission {
 
 		return null;
 	
+	}
+	
+	public static ArrayList<Submission> getsublmissionList(String conferenceName, JSONObject data) {
+		
+        
+		try {
+			baseUri = data.getString("baseUri");
+			System.out.println("DATA --> " + baseUri);
+			loginAccessToken = data.getString("loginAccessToken");
+		} catch (JSONException jsonException) {
+			jsonException.printStackTrace();
+		}
+
+		oauthHeader = new BasicHeader("Authorization", "OAuth " + loginAccessToken);
+		if(submissionList!=null)
+			submissionList.clear();
+		try{
+        HttpClient httpClient = HttpClientBuilder.create().build();
+		String uri = baseUri + "/query?q=Select+Id+,+Name+,+Subject__c+From+Submission__c+where+Conference__r.subject__c='"+conferenceName+"'";
+        System.out.println("Query URL: " + uri);
+        HttpGet httpGet = new HttpGet(uri);
+        httpGet.addHeader(oauthHeader);
+        httpGet.addHeader(prettyPrintHeader);
+
+        // Make the request.
+        HttpResponse response = httpClient.execute(httpGet);
+        int statusCode = response.getStatusLine().getStatusCode();
+        if (statusCode == 200) {
+            String response_string = EntityUtils.toString(response.getEntity());
+            try {
+                JSONObject json = new JSONObject(response_string);
+                System.out.println("JSON return of Query:\n" + json.toString(1));
+                JSONArray j = json.getJSONArray("records");
+
+                for (int i = 0; i < j.length(); i++){
+                	submission= new Submission();
+
+                	submissionId = json.getJSONArray("records").getJSONObject(i).getString("Id");
+                	submission.setIdSubmission(submissionId);
+                	
+                	name = json.getJSONArray("records").getJSONObject(i).getString("Name");
+                	submission.setSubmissionTitle(name);
+
+                	subject = json.getJSONArray("records").getJSONObject(i).getString("Subject__c");
+                	submission.setSubmissionTitle(subject);
+                	
+                    submissionList.add(submission);
+                	
+                    System.out.println("conference submission is: " + i + ". " + submissionId + " " + name + " " + subject +" ");
+                }
+                
+                System.out.println("list conf --> Utilconference "+submissionList);
+
+                return submissionList;
+            } catch (JSONException je) {
+                je.printStackTrace();
+            }
+        } else {
+            System.out.println("Hoops ça marche pas . Status erreur " + statusCode);
+            System.out.println("ERROR NUMBER: " + response.getStatusLine().getStatusCode());
+            //System.out.println(getBody(response.getEntity().getContent()));
+            System.exit(-1);
+        }
+		
+		
+        
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } catch (NullPointerException npe) {
+            npe.printStackTrace();
+        }
+        
+		return null;
+
+		
 	}
 
 }

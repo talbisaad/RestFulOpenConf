@@ -36,14 +36,18 @@ public void init() {
 		conferenceList= new ArrayList<Conference>();
 		conferenceService= new ConferenceServiceImpl();
 		
-		//Affichage de la liste des conférences 
+		//Affichage de la liste des confï¿½rences 
 		if(page.equals("ConferenceList")){
 			conferenceList=conferenceService.DisplayConferenceList();
 		request.setAttribute("conferencelist", conferenceList);
 		request.setAttribute("lengh",conferenceList.size());
-		}
-	
 		this.getServletContext().getRequestDispatcher("/ConferenceList.jsp").forward(request, response);
+
+		}
+		if(page.equals("DisplayConference")){
+		this.getServletContext().getRequestDispatcher("/DisplayConference.jsp").forward(request, response);
+		}
+
 	}
 
 	/**

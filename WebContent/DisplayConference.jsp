@@ -28,7 +28,7 @@
 			<br>
 
 
-			<form action="ConferenceServlet?action=CreerClass" method="POST">
+			<form action="ConferenceServlet?action=CreateConference" method="POST">
 
 				<table width="70%">
 

@@ -12,5 +12,7 @@ public interface SubmissionService {
 	void createSubmission(HttpServletRequest request);
 	HttpServletRequest  displaySubmission(HttpServletRequest request);
 	ArrayList<Submission> getSubmissionList(HttpServletRequest request);
+	HttpServletRequest 	getSubmissionById(HttpServletRequest request);
+						void			saveReviewSubmission(HttpServletRequest request);
 	
 }

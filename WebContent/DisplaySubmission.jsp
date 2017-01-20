@@ -115,7 +115,7 @@
 	</div>
 
 
-	<!-- Affichage de la classe  -->
+	<!-- Affichage de la submission  -->
 
 
 	<div class="inner" id="affichage" style="display: none">

@@ -21,7 +21,7 @@
            </ul>
           <li><div class="titleitm">Review<span class="togl">[ - ]</span></div>
            <ul class="subItm">
-                 <li><a href="/OpenConf/ReviewSubmission">Review submission</a></li>
+                 <li><a href="/OpenConf/GetSubmissionListForReview">Review submission</a></li>
            </ul>
           </li>
       </ul> 

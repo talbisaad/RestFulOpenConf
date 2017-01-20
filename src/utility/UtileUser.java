@@ -1,7 +1,6 @@
 package utility;
 
 import java.io.IOException;
-import java.io.Reader;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -12,7 +11,6 @@ import org.apache.http.message.BasicHeader;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONTokener;
 import org.apache.http.Header;
 
 import beans.User;

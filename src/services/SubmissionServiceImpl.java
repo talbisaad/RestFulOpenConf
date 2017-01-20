@@ -72,6 +72,32 @@ public class SubmissionServiceImpl implements SubmissionService{
 		//SubmissionList.add(sub1);
 		return UtileSubmission.getsublmissionList(conferenceSubject, connexion);
 	}
+
+	@Override
+	public HttpServletRequest getSubmissionById(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		
+		//Faut chercher la submission par l'id 
+			Submission sub = new Submission();
+			
+			sub.getConference().setConferanceName("Ingenering conference");
+			sub.getUser().setMail("Saad@hotmail.fr");
+			sub.setSubmissionTitle("Titre de submission");
+			sub.setSubmissionTheme("le theme de la sub");
+			
+			request.setAttribute("submission", sub);
+		return request;
+	}
+
+	@Override
+	public void saveReviewSubmission(HttpServletRequest request) {
+		Submission sub = new Submission();
+		
+		sub.setStatus(request.getParameter("droit"));
+		sub.setReviewComments(request.getParameter("Comments"));
+		sub.setGrad(request.getParameter("Grad"));
+		
+	}
  
 
 }

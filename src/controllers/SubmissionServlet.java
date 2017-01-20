@@ -29,7 +29,9 @@ public class SubmissionServlet extends HttpServlet {
      private static final String DISPLAYSUBMISSION ="DisplaySubmission";
      private static final String CREATESUBMISSION ="createSubmission";
      private static final String  GETSUBMISSIONS="GetSubmissions";
-     private static final String REVIEWSUBMISSION=	"ReviewSubmission";
+     private static final String GETSUBLISTFORREVIEW=	"GetSubmissionListForReview";
+     private static final String REVIEW="Review";
+     private static final String SAVEREVIEW="SaveReview";
 	
      @Override
 	public void init()  {
@@ -58,8 +60,8 @@ public class SubmissionServlet extends HttpServlet {
 			this.getServletContext().getRequestDispatcher("/DisplaySubmission.jsp").forward(request, response);			
 			break;
 			
-		  case REVIEWSUBMISSION:
-			this.getServletContext().getRequestDispatcher("/ReviewSubmission.jsp").forward(request, response);
+		  case GETSUBLISTFORREVIEW:
+			this.getServletContext().getRequestDispatcher("/GetSubmissionListForReview.jsp").forward(request, response);
 			break;
 			
 		}
@@ -77,7 +79,6 @@ public class SubmissionServlet extends HttpServlet {
 		
 		String action = request.getParameter("action");
 		
-		//Création d'une submission
 		
 		switch(action){
 		case CREATESUBMISSION :
@@ -93,7 +94,18 @@ public class SubmissionServlet extends HttpServlet {
 			request.setAttribute("SubmissionList",SubmissionList );
 			request.setAttribute("lengh", SubmissionList.size());
 			
-			this.getServletContext().getRequestDispatcher("/ReviewSubmission.jsp").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/GetSubmissionListForReview.jsp").forward(request, response);
+			break;
+			
+		case REVIEW:
+			//review submission
+			this.getServletContext().getRequestDispatcher("/ReviewSubmission.jsp").forward(submissionService.getSubmissionById(request), response);			 
+			break;
+			
+		case SAVEREVIEW:
+			//save Review submission
+			submissionService.saveReviewSubmission(request);
+			this.getServletContext().getRequestDispatcher("/GetSubmissionListForReview.jsp").forward(request, response);
 			break;
 		}
 		

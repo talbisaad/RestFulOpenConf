@@ -45,7 +45,7 @@
 				
 				<table>
 					<tr>
-						<td><input type="checkbox" name="droit" value="CD" />Chercher</td>
+						<td><input type="checkbox" name="droit" value="CD" />Chercheur</td>
 						<td><input type="checkbox" name="droit" value="RF"/>Reviewer</td>
 							<td><input type="checkbox" name="droit" value="AD"/>Comité</td>											
 					</tr>

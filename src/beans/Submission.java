@@ -8,6 +8,9 @@ private String submissionTheme;
 private String keywords;
 private String submissionAbstract;
 private String status;
+private String reviewComments;
+private String Grad;
+
 
 private User user;
 
@@ -16,7 +19,7 @@ private Conference conference;
 
 
 public Submission(String idSubmission, String submissionTitle, String submissionTheme, String keywords,
-		String submissionAbstract, String status) {
+		String submissionAbstract, String status, String reviewComments, String Grad) {
 	super();
 	this.idSubmission = idSubmission;
 	this.submissionTitle = submissionTitle;
@@ -24,7 +27,11 @@ public Submission(String idSubmission, String submissionTitle, String submission
 	this.keywords = keywords;
 	this.submissionAbstract = submissionAbstract;
 	this.status=status;
+	this.reviewComments=reviewComments;
+	this.Grad=Grad;
 }
+
+
 
 
 public Submission() {
@@ -96,6 +103,28 @@ public void setConference(Conference conference) {
 
 public void setUser(User user) {
 	this.user = user;
+}
+
+
+public String getReviewComments() {
+	return reviewComments;
+}
+
+
+public void setReviewComments(String reviewComments) {
+	this.reviewComments = reviewComments;
+}
+
+
+public String getGrad() {
+	return Grad;
+}
+
+
+
+
+public void setGrad(String Grad) {
+	this.Grad = Grad;
 }
 
 @Override

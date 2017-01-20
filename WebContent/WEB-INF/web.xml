@@ -31,6 +31,10 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>SubmissionServlet</servlet-name>
+    <url-pattern>/GetSubmissionListForReview</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SubmissionServlet</servlet-name>
     <url-pattern>/ReviewSubmission</url-pattern>
   </servlet-mapping>
   

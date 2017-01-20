@@ -194,8 +194,8 @@
 					</form>
 				</td>
 				<td>
-					<form action="SubmissionServlet?action=Cancel" method="POST">
-						<input type="submit" name="Annuler" value="Annuler" class="submit" />
+					<form action="SubmissionServlet?action=DeleteSubmission" method="POST">
+						<input type="submit" name="Delete" value="Delete" class="submit" />
 
 					</form>
 				</td>

@@ -27,79 +27,75 @@
 			<br>
 
 
-			<form action="ServletClass?action=SaveClass" method="POST">
+			<form action="SubmissionServlet?action=SaveManageSubmission"
+				method="POST">
 				<fieldset>
 					<legend>General information</legend>
 					<table width="70%">
 
 						<tr>
-							<td>Conference</td>
-							<td>:</td>
-							<td><input type="text" name="NomClasse" size="30"
-								value="<c:out value="${classe.nomClasse}"/>"></td>
-								
-
-							<td><input type="text" name="NomClasseHidden"
-								style="display: none;" size="30"
-								value="<c:out value="${classe.nomClasse}"/>"></td>
 
 
 							<td>Submission Title</td>
 							<td>:</td>
-							<td><input type="text" name="NomClasse" size="30"
-								value="<c:out value="${classe.nomClasse}"/>"></td>
-							<td><input type="text" name="filiereHidden"
+							<td><input type="text" name="submissionTitle" size="30"
+								value="<c:out value="${submission.submissionTitle}"/>"></td>
+							<td><input type="text" name="submissionTitleHidden"
 								style="display: none;" size="30"
-								value="<c:out value="${classe.filiere.nom}"/>"></td>
+								value="<c:out value="${submission.submissionTitle}"/>"></td>
 						</tr>
-						<tr>
-							<td>Email</td>
-							<td>:</td>
-							<td><input type="text" name="NomClasse" size="30"
-								value="<c:out value="${classe.nomClasse}"/>"></td>
 
-							<td><input type="text" name="niveauHidden"
-								style="display: none;" size="30"
-								value="<c:out value="${classe.niveau}"/>"></td>
-
-						</tr>
-						</table>
-						<table width="70%">
+					</table>
+					<table width="70%">
 						<tr>
 							<td>Submission theme</td>
 							<td>:</td>
-							<td><input type="radio" name="droit" value="CD" />Programming</td>
-							<td><input type="radio" name="droit" value="RF" />Classic
-								papers</td>
-							<td><input type="radio" name="droit" value="AD" />Networking</td>
-							<td><input type="radio" name="droit" value="AD" />Computer
-								science</td>
+
+							<td><select class="selectfilter filterSrch"
+								name="submissionTheme" id="filtersh">
+									<c:forEach items="${submissionThemes}" var="f">
+										<c:if test="${f==submission.submissionTheme}">
+											<option selected="selected">${f}</option>
+										</c:if>
+										<c:if test="${f!=submission.submissionTheme}">
+											<option>${f}</option>
+										</c:if>
+
+									</c:forEach>
+							</select></td>
+
 						</tr>
 					</table>
 				</fieldset>
 
-	<!-- Faut ajouté les champs caché !!!!!!!!
-	 -->			<fieldset>
+				<fieldset>
 					<legend>Contente</legend>
 					<table width="70%">
 						<tr>
 							<td>Keywords</td>
 							<td>:</td>
-							<td><input type="text" name="NomClasse" size="30"
-								class="inpt"></td>
+							<td><input type="text" name="keywords" size="30"
+								class="inpt" value="<c:out value="${submission.keywords}"/>"></td>
+							<td><input type="text" name="keywordsHidden"
+								style="display: none;" size="30"
+								value="<c:out value="${submission.keywords}"/>"></td>
 						</tr>
 						<tr>
 							<td>Abstract</td>
 							<td>:</td>
-							<td><textarea class="inpt" name="NomClasse" rows="10"
-									cols="50" class="inpt"></textarea></td>
+							<td><input type="text" class="inpt"
+								name="submissionAbstract" class="inpt"
+								value="<c:out value="${submission.submissionAbstract}"/>"></td>
+							<td><input type="text" name="submissionAbstractHidden"
+								style="display: none;" size="30"
+								value="<c:out value="${submission.submissionAbstract}"/>"></td>
 						</tr>
 						<tr>
 							<td>File</td>
 							<td>:</td>
 							<td><input type="file" id="fichier" name="fichier" value="" /></td>
 						</tr>
-						
+
 						<tr>
 							<td></td>
 							<td></td>

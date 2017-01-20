@@ -33,10 +33,11 @@ public class SubmissionServiceImpl implements SubmissionService{
 		JSONObject connexion = ConnectRest.connect();
 		System.out.println("connexion +++ --->" +connexion);
 		JSONObject responseAddSubmission = UtileSubmission.addSubmission(submission, connexion);
-		
-		
+				
 		System.out.println("responseAddSubmission --> "+ responseAddSubmission);
 		
+		submission.setIdSubmission( responseAddSubmission.getString("id"));
+			
 	
 	}
 
@@ -98,6 +99,45 @@ public class SubmissionServiceImpl implements SubmissionService{
 		sub.setGrad(request.getParameter("Grad"));
 		
 	}
+
+	@Override
+	public Submission getSubmission() {
+		// TODO Auto-generated method stub
+		return submission;
+	}
+
+	@Override
+	public void setSubmission(Submission submission) {
+		this.submission=submission;
+		
+	}
+
+	@Override
+	public HttpServletRequest updateSubmission(HttpServletRequest request) {
+
+	//	submission.setIdSubmission();
+		submission.setSubmissionTitle(request.getParameter("submissionTitle"));			
+		submission.setSubmissionTheme(request.getParameter("submissionTheme"));
+		submission.setKeywords(request.getParameter("keywords"));
+		submission.setSubmissionAbstract(request.getParameter("submissionAbstract"));
+		
+		return displaySubmission(request);
+		
+	}
+
+	@Override
+	public HttpServletRequest deleteSublission(HttpServletRequest request) {
+		
+		//submission.setIdSubmission();
+		
+		
+		
+		return null;
+	}
+
+	 
+
+	 
  
 
 }

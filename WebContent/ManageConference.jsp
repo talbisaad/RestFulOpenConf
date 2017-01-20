@@ -25,7 +25,7 @@
 		<div id="modification">
 			<br> <br> <span class="ttl">Manage conference</span><br> <br>
 			
-			<form action="ServletClass?action=SaveClass" method="POST">
+			<form action="ConferenceServlet?action=SaveManageConference" method="POST">
 			<fieldset>
 			<legend>Search</legend>
 			 
@@ -63,7 +63,7 @@
 			</form>
 
 			
-			<form action="ServletClass?action=SaveClass" method="POST">
+			<form action="ConferenceServlet?action=SaveClass" method="POST">
 		<fieldset>
 		<legend>Conference</legend>
 				<table width="70%">

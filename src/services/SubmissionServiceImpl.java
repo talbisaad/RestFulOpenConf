@@ -50,8 +50,36 @@ public class SubmissionServiceImpl implements SubmissionService{
 		
 		return request;
 	}
+	
+	@Override
+	public HttpServletRequest displaysubmissionFromList(HttpServletRequest request) {
+		
+		request.setAttribute("submission",getSubmissionByIdForList(request) );
+		request.setAttribute("creation", FALSE );
+		request.setAttribute("affichage", TRUE);
+			
+		
+		return request;
+	}
+	
+	@Override
+	public Submission getSubmissionByIdForList(HttpServletRequest request) {
+		
+		//request.getParameter("idSubmission"); Pour avoir l'id ;)
+		
+		Submission sub = new Submission();
+		sub.setIdSubmission("AAAA");
+		sub.getConference().setConferanceName("Ingenering conference");
+		sub.getUser().setMail("Saad@hotmail.fr");
+		sub.setSubmissionTitle("Titre de submission");
+		sub.setSubmissionTheme("le theme de la sub");
+		
+		request.setAttribute("submission", sub);
+		
+		return sub;
+	} 
 
-	public ArrayList<Submission> getSubmissionList(HttpServletRequest request) {
+	public ArrayList<Submission> getSubmissionListByConferenceSubject(HttpServletRequest request) {
 		
 		String conferenceSubject = request.getParameter("conferenceSubject");
 		
@@ -87,7 +115,7 @@ public class SubmissionServiceImpl implements SubmissionService{
 		String submissionId = "TYUPZJJZ";
 		
 		JSONObject connexion = ConnectRest.connect();
-		JSONObject responseAddSubmission = UtileSubmission.updateSubmissionByReviewer(submissionId, connexion);
+		 UtileSubmission.updateSubmissionByReviewer(submissionId, connexion);
 
 		
 
@@ -105,9 +133,30 @@ public class SubmissionServiceImpl implements SubmissionService{
 	@Override
 	public HttpServletRequest getSubmissionListById(HttpServletRequest request) {
 
-		 
-		
-		//request.setAttribute("conferencelistbyId", conferencelistbyId);
+	//	chercher avec : request.getParameter("mail");
+
+		Submission sub1 = new Submission();
+		Submission sub2 = new Submission();
+		Submission sub3 = new Submission();
+					sub1.setSubmissionTitle("t1"); 
+					sub1.setIdSubmission("RER");
+					sub1.getConference().setConferenceSubject("title");
+					sub1.setKeywords("key");
+					sub2.setSubmissionTitle("t1"); 
+					sub2.setIdSubmission("RER");
+					sub2.getConference().setConferenceSubject("title");
+					sub2.setKeywords("key");
+					sub3.setSubmissionTitle("t1"); 
+					sub3.setIdSubmission("RER");
+					sub3.getConference().setConferenceSubject("title");
+					sub3.setKeywords("key");
+					
+		ArrayList<Submission> submissionList = new ArrayList<Submission>();			
+		submissionList.add(sub1);
+		submissionList.add(sub2);
+		submissionList.add(sub3);
+		request.setAttribute("lengh", submissionList.size());
+		request.setAttribute("submissionList", submissionList);
 		
 		return request;
 	}
@@ -138,14 +187,17 @@ public class SubmissionServiceImpl implements SubmissionService{
 	}
 
 	@Override
-	public HttpServletRequest deleteSublission(HttpServletRequest request) {
+	public HttpServletRequest deleteSubmission(HttpServletRequest request) {
 		
-		//submission.setIdSubmission();
 		
 		
 		
 		return null;
 	}
+
+	
+
+	
 
 	 
 

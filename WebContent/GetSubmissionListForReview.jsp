@@ -87,7 +87,7 @@
 							<td><c:out value="${c.status}" /></td>
 							  <td><form action="SubmissionServlet?action=Review" method="POST"><button style="border:0px solid black; background-color: transparent;" type="submit" name="Modifier"><img alt="modify" class="modifyicone"
 								src="CSS/modify.png"></button>
-								<input type="hidden" name="IdRow" value="${c}"/>
+								<input type="hidden" name="IdRow" value="${c.idSubmission}"/>
 								</form></td>							 
 						</tr>
 					</c:forEach>

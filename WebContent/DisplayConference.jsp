@@ -35,24 +35,22 @@
 					<tr>
 						<td>Conference Name</td>
 						<td>:</td>
-						<td><input type="text" name="NomClasse" size="30" class="inpt"></td>
+						<td><input type="text" name="conferanceName" size="30" class="inpt"></td>
 
 						<td>Subject</td>
 						<td>:</td>
-						<td><input type="text" name="NomClasse" size="30" class="inpt"></td>
+						<td><input type="text" name="conferenceSubject" size="30" class="inpt"></td>
 					</tr>
 					<tr>
 						<td>Day</td>
 						<td>:</td>
-						<td><input type="text" name="NomClasse" size="30" class="inpt"></td>
-						<td>Time</td>
-						<td>:</td>
-						<td><input type="text" name="annee" id="filtersh" class="inpt" /></td>
+						<td><input type="text" name="time" size="30" class="inpt"></td>
+						 
 					</tr>
 					<tr>
 						<td>Number of participants</td>
 						<td>:</td>
-						<td><input type="text" name="NomClasse" size="30" class="inpt"></td>
+						<td><input type="text" name="participantNumber" size="30" class="inpt"></td>
 					</tr>
 
 					<tr>
@@ -79,36 +77,34 @@
 
 
 	<div class="inner" id="affichage" style="display: none">
-		<br> <br> <span class="ttl">Affiche Classe</span><br> <br>
-		<form action="Controle?act=ajouteremp" method="POST">
+		<br> <br> <span class="ttl">Conference</span><br> <br>
+		<form action="ConferenceServlet?action=CreateConference" method="POST">
 
 			<table width="70%">
 				<tr>
 					<td>Conference name</td>
 					<td>:</td>
-					<td><label class="selectfilter filterSrch" id="filtersh" ><c:out
-								value="${classe.nomClasse}" /></label></td>
+					<td><label  class="selectfilter filterSrch" id="filtersh" ><c:out
+								value="${conference.conferanceName}" /></label></td>
 
 					<td>Subject</td>
 					<td>:</td>
 					<td><label class="selectfilter filterSrch" id="filtersh"><c:out
-								value="${classe.filiere.nom}" /></label></td>
+								value="${conference.conferenceSubject}" /></label></td>
 				</tr>
 				<tr>
 					<td>Day</td>
 					<td>:</td>
 					<td><label class="selectfilter filterSrch" id="filtersh"><c:out
-								value="${classe.niveau}" /></label></td>
-					<td>Time</td>
-					<td>:</td>
-					<td><label class="selectfilter filterSrch" id="filtersh"><c:out
-								value="${classe.anneeUniversitaire}" /></label></td>
+								value="${conference.time}" /></label></td>
+					 
 				</tr>
 				
 				<tr>
 					<td>Number of participants</td>
 					<td>:</td>
-					<td><input type="text" name="NomClasse" size="30" class="inpt"></td>
+					<td><label class="selectfilter filterSrch" id="filtersh"><c:out
+								value="${conference.participantNumber}" /></label></td>
 				</tr>
 
 				<tr>
@@ -124,23 +120,7 @@
 
 			</table>
 		</form>
-		<table>
-			<tr>
-				<td>
-					<form action="ServletClass?action=ModifierClass" method="POST">
-						<input type="submit" name="Modifier" value="Modifier"
-							class="submit" />
-					</form>
-				</td>
-				<td>
-					<form action="ServletClass?action=Annuler" method="POST">
-						<input type="submit" name="Annuler" value="Annuler"
-							class="submit" />
-
-					</form>
-				</td>
-			</tr>
-		</table>
+		 
 	</div>
 
 	<script>

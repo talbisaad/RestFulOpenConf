@@ -27,7 +27,7 @@
 		<br>
 	<fieldset>
 			<legend>Search</legend>
-			<form action="ServletEtudiant?action=GestionClass" method="POST">
+			<form action="SubmissionServlet?action=SearchSubmission" method="POST">
 				<div>
 
 					<table width="70%">
@@ -35,7 +35,7 @@
 						<tr>
 							<td>E-mail</td>
 							<td>:</td>
-							<td><input type="text" class="inpt" name="NomClasse"
+							<td><input type="text" class="inpt" name="mail"
 								size="30"></td>
 
 							 
@@ -76,20 +76,20 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach begin="0" end="${lengh}" step="1" varStatus="loopCounter" items="${listclasse}" var="c">
+					<c:forEach begin="0" end="${lengh}" step="1" varStatus="loopCounter" items="${submissionList}" var="c">
 						<tr>
 
-							<td ><c:out  value="${c.nomClasse}"/></td>
-							<td><c:out value="${c.filiere.nom}"/></td>
-							<td><c:out value="${c.niveau}"/></td>
-							<td><c:out value="${c.anneeUniversitaire}" /></td>
-							<td><form action="ServletClass?action=ModifierClassFromListClass" method="POST"><button style="border:0px solid black; background-color: transparent;" type="submit" name="Modifier"><img alt="modify" class="modifyicone"
+							<td ><c:out  value="${c.submissionTitle}"/></td>
+							<td><c:out value="${c.conference.conferanceName}"/></td>
+							<td><c:out value="${c.submissionTheme}"/></td>
+							<td><c:out value="${c.status}"/></td>
+							<td><form action="SubmissionServlet?action=UpdateSubFromList" method="POST"><button style="border:0px solid black; background-color: transparent;" type="submit" name="Modifier"><img alt="modify" class="modifyicone"
 								src="CSS/modify.png"></button>
-								<input type="hidden" name="IdRow" value="${c.idClasse}"/>
+								  <input type="hidden" name="idSubmission" value="${c.idSubmission}"/>  
 								</form></td>
-							<td><form action="ServletClass?action=SupprimerClass" method="POST"><button style="border:0px solid black; background-color: transparent;" type="submit" name="Modifier"> <img alt="delete" class="deleteicone"
+							<td><form action="SubmissionServlet?action=DeleteSubmission" method="POST"><button style="border:0px solid black; background-color: transparent;" type="submit" name="Modifier"> <img alt="delete" class="deleteicone"
 								src="CSS/delete.png"></button>
-							  <input type="hidden" name="IdRow" value="${c.idClasse}"/>
+							   <input type="hidden" name="idSubmission" value="${c.idSubmission}"/>  
 								</form></td>
 						</tr>
 					</c:forEach>

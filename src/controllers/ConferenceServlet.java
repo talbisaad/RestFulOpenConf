@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +16,7 @@ import services.ConferenceServiceImpl;
 /**
  * Servlet implementation class ConferenceServlet
  */
+@WebServlet("/ConferenceServlet")
 public class ConferenceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ConferenceService conferenceService;
@@ -22,23 +24,21 @@ public class ConferenceServlet extends HttpServlet {
 	private static final String CONFERENCELIST = "ConferenceList";
 	private static final String DISPLAYCONFERENCE = "DisplayConference";
 	private static final String MANAGECONFERENCE = "ManageConference";
+	private static final String CREATECONFERENCE="CreateConference";
 
 	@Override
 	public void init() {
-
+		conferenceService = new ConferenceServiceImpl();
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+ 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
 		String page = request.getRequestURL().substring(31);
 		conferenceList = new ArrayList<Conference>();
-		conferenceService = new ConferenceServiceImpl();
+		
 
 		// Affichage de la liste des conferences
 
@@ -67,15 +67,20 @@ public class ConferenceServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-<<<<<<< HEAD
 		
-		//list - methode;
-		//request?set
+		String action = request.getParameter("action");
+		
+		switch(action){
+		
+		case CREATECONFERENCE:
+			
+			conferenceService.createConference(request);
+			this.getServletContext().getRequestDispatcher("/DisplayConference.jsp").forward(conferenceService.displayConference(request), response);
+			
+			break;
+		
+		}
  
-=======
-
->>>>>>> 3906eeff8c2f64b669724961c1c4a013b3c27921
 	}
 
 }

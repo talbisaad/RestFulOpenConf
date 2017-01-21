@@ -2,6 +2,8 @@ package services;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.json.JSONObject;
 
 import beans.Conference;
@@ -10,10 +12,16 @@ import utility.UtileConference;
 
 public class ConferenceServiceImpl implements ConferenceService {
 	
-	ArrayList<Conference> responseGetConferenceList;
+	private ArrayList<Conference> responseGetConferenceList;
+	private Conference conference;
+	private static final String TRUE="true";
+	private static final String FALSE="false";
 	
+
+
 	public ConferenceServiceImpl() {
 		responseGetConferenceList= new ArrayList<Conference>();
+		conference = new Conference();
 	}
 
 	
@@ -30,4 +38,51 @@ public class ConferenceServiceImpl implements ConferenceService {
 		return responseGetConferenceList;
 	}
 
+
+	@Override
+	public void createConference(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		
+		conference.setConferanceName(request.getParameter("conferanceName"));
+		conference.setConferenceSubject(request.getParameter("conferenceSubject"));
+		conference.setTime(request.getParameter("time"));
+		conference.setParticipantNumber(Integer.parseInt(request.getParameter("participantNumber")));
+		
+		//méthode de création dans le WS
+		
+		conference.setIdConference("tmp");
+		
+			
+	}
+	
+@Override
+	public HttpServletRequest displayConference(HttpServletRequest request) {
+		
+		request.setAttribute("conference", getConference());
+		request.setAttribute("creation", FALSE );
+		request.setAttribute("affichage", TRUE);
+		
+		return request;
+	}
+
+
+	public ArrayList<Conference> getResponseGetConferenceList() {
+		return responseGetConferenceList;
+	}
+
+
+	public void setResponseGetConferenceList(ArrayList<Conference> responseGetConferenceList) {
+		this.responseGetConferenceList = responseGetConferenceList;
+	}
+
+
+	public Conference getConference() {
+		return conference;
+	}
+
+
+	public void setConference(Conference conference) {
+		this.conference = conference;
+	}
+	
 }

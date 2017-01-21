@@ -37,6 +37,9 @@ public class SubmissionServlet extends HttpServlet {
      private static final String UPDATESUBMISSION="UpdateSubmission";
      private static final String SAVEMANAGESUBMISSION="SaveManageSubmission";
      private static final String DELETESUBMISSION="DeleteSubmission";
+     private static final String SEARCHSUBMISSION="SearchSubmission";
+     private static final String SUBMISSIONLIST="SubmissionList";
+     private static final String UPDATESUBFROMLIST="UpdateSubFromList";
      
      
 	
@@ -72,6 +75,9 @@ public class SubmissionServlet extends HttpServlet {
 		  case MANAGESUBMISSION:
 			  this.getServletContext().getRequestDispatcher("/ManageSubmission.jsp").forward(request, response);
 				break;		 
+		  case SUBMISSIONLIST:
+			  this.getServletContext().getRequestDispatcher("/SubmissionList.jsp").forward(request, response);
+			  break;
 		}				 					 
 		}
 		
@@ -91,7 +97,7 @@ public class SubmissionServlet extends HttpServlet {
 			
 			//affichage de la liste des submissions
 			ArrayList<Submission> SubmissionList= new ArrayList<Submission>();
-			SubmissionList=submissionService.getSubmissionList(request);
+			SubmissionList=submissionService.getSubmissionListByConferenceSubject(request);
 			request.setAttribute("SubmissionList",SubmissionList );
 			request.setAttribute("lengh", SubmissionList.size());
 			
@@ -123,18 +129,26 @@ public class SubmissionServlet extends HttpServlet {
 			 break;
 			 
 		  case DELETESUBMISSION:
-			  conferenceList= new ArrayList<Conference>();
-				conferenceService= new ConferenceServiceImpl();
-				conferenceList=conferenceService.DisplayConferenceList();
-				request.setAttribute("conferencelist", conferenceList);
-				request.setAttribute("lengh",conferenceList.size());	
-				this.getServletContext().getRequestDispatcher("/DisplaySubmission.jsp").forward(request, response);
+			 
+			 //request.getParameter("idSubmission");
+			  this.getServletContext().getRequestDispatcher("/SubmissionList.jsp").forward(submissionService.deleteSubmission(request), response);
+			  break;
+			  
+		  case SEARCHSUBMISSION:
+			  
+			  
+			  this.getServletContext().getRequestDispatcher("/SubmissionList.jsp").forward(submissionService.getSubmissionListById(request), response);
 			  break;
 			
-		}
+			
+		case UPDATESUBFROMLIST:
+			
+			
+			 this.getServletContext().getRequestDispatcher("/ManageSubmission.jsp").forward(submissionService.displaysubmissionFromList(request),response);	
+			 break;
 		
-		
 		}
+		 	}
 	}
 
 

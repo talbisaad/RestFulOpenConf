@@ -12,6 +12,8 @@
              <ul class="subItm">
                  <li><a href="/OpenConf/DisplaySubmission">Create submission</a></li>
                  <li><a href="/OpenConf/ManageSubmission">Manage submission</a></li>
+                 <li><a href="/OpenConf/SubmissionList">Check Submission</a></li>
+                 
              </ul>
           </li>
           <li><div class="titleitm">Conference<span class="togl">[ - ]</span></div>

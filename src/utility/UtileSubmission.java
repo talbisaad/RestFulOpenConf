@@ -31,9 +31,9 @@ public  class UtileSubmission {
 	private static String loginAccessToken;
 	private static Header oauthHeader;
 	private static Header prettyPrintHeader = new BasicHeader("X-PrettyPrint", "1");
-<<<<<<< HEAD
 	
-
+	public  static ArrayList<String> submissionThemes= new ArrayList<String>();
+	private static JSONObject json;
 	
 	
 	public static ArrayList<Submission> getsubmissionList(String conferenceName, JSONObject data) {
@@ -113,10 +113,7 @@ public  class UtileSubmission {
 
 	
 
-=======
-	public  static ArrayList<String> submissionThemes= new ArrayList<String>();
-	private static JSONObject json;
->>>>>>> 3906eeff8c2f64b669724961c1c4a013b3c27921
+
 	public static JSONObject addSubmission(Submission submission, JSONObject data) {
 		
 		

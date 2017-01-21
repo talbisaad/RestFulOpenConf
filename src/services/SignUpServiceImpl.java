@@ -10,14 +10,14 @@ import utility.UtileUser;
 
 public class SignUpServiceImpl implements SignUpService {
 
-	private User user;
+	private User userSignIn;
 
 	public SignUpServiceImpl() {
-		this.user = new User();
-
+		userSignIn= new User();
 	}
 
 	public User SaveUser(HttpServletRequest request) {
+		  User user = new User();
 
 		user.setUserName(request.getParameter("nom").toString());
 		user.setUserLastName(request.getParameter("prenom").toString());
@@ -55,6 +55,19 @@ public class SignUpServiceImpl implements SignUpService {
 	return null;
 	
 	}
+
+	@Override
+	public User signIn(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		
+		userSignIn.setUserName(request.getParameter("username"));
+		userSignIn.setPassword(request.getParameter("password"));
+		
+		//if(userResult!=null)
+	//	return userSignIn;
+		return null;
+	}
+	
 	 
 
 }

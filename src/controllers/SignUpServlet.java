@@ -19,6 +19,11 @@ public class SignUpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private SignUpService signUpService;
+	private static final String INDEX="index";
+	private static final String SIGNUP="SignUp";
+	private static final String GOSIGNUP="GOSignUp";
+	private static final String SIGNIN="SignIN";
+	private static final String SAVEUSER="SaveUser";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -42,8 +47,20 @@ public class SignUpServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		this.getServletContext().getRequestDispatcher("/SignUp.jsp").forward(request, response);
+		String page = request.getRequestURL().substring(31);
+		
+		switch(page){
+		
+		case INDEX :
+			this.getServletContext().getRequestDispatcher("/Index.jsp").forward(request, response);
+			break;
+			
+		case SIGNUP: 
+			this.getServletContext().getRequestDispatcher("/SignUp.jsp").forward(request, response);
+			break;
+		}
+		
+		
 	}
 
 	/**
@@ -52,8 +69,26 @@ public class SignUpServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		signUpService.SaveUser(request); 
-		//doGet(request, response);
+		String action = request.getParameter("action");
+		
+		switch(action){
+		
+		case SIGNIN:
+			signUpService.signIn(request);
+			this.getServletContext().getRequestDispatcher("/ManageSubmission.jsp").forward(request, response);
+			break;
+			
+		case SAVEUSER:
+			signUpService.SaveUser(request); 
+			this.getServletContext().getRequestDispatcher("/SignUp.jsp").forward(request, response);
+			break;
+		case GOSIGNUP:
+			this.getServletContext().getRequestDispatcher("/SignUp.jsp").forward(request, response);
+			break;
+		}
+		
+		
+		
 	}
 
 }

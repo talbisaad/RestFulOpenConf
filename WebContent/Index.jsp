@@ -1,19 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-   pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
-   <head>
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <link rel="stylesheet" href="CSS/style.css"/>
-      <script type="text/javascript" src="JS/jquery-2.1.1.min.js"></script>
-      <script type="text/javascript" src="JS/jquery-ui.js"></script>
-      <script type="text/javascript" src="JS/script.js"></script>
-      <title>Admin</title>
-   </head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="CSS/style.css" />
+<script type="text/javascript" src="JS/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="JS/jquery-ui.js"></script>
+<script type="text/javascript" src="JS/script.js"></script>
    <body>
       <div class="box">
          <img alt="adminicone" src="CSS/adm.png" class="admicone"/>
-         <form action="Controle?act=login" method="post">
+         <form action="SignUpServlet?action=SignIN" method="post">
             <table>
                <tr>
                   <td>e-mail</td>
@@ -27,6 +25,10 @@
                   <td></td>
                   <td><input type="submit" value="Se Connecter" class="submit"/></td>
                </tr>
+               </table>
+            </form>
+            <form action="SignUpServlet?action=GOSignUp" method="post">  
+            <table>  
                <tr>
                   <td></td>
                   <td><input type="submit" value="S'inscrire" class="submit"/></td>

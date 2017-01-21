@@ -1,4 +1,4 @@
-package utility;
+package ws;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -160,7 +160,6 @@ public  class UtileSubmission {
                 	submission.setSubmissionTitle(name);
 
                 	theme = json.getJSONArray("records").getJSONObject(0).getString("Subject__c");
-<<<<<<< HEAD
                 	submission.setSubmissionTheme(theme);
                 	
                 	commment = json.getJSONArray("records").getJSONObject(0).getString("Comment__c");
@@ -172,10 +171,7 @@ public  class UtileSubmission {
                 	Descison = json.getJSONArray("records").getJSONObject(0).getString("Descison__c");
                 	submission.setStatus(Descison);
                 	                         
-=======
-                	submission.setSubmissionTheme(subject);
-                                    
->>>>>>> e7591c77482012552fc418aa617981ec98438863
+
                 
                 System.out.println(" OBJET ::::: : Submission to revieuw "+submission);
 

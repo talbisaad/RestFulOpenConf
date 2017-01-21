@@ -1,4 +1,4 @@
-package utility;
+package ws;
 
 import java.io.IOException;
 import java.util.ArrayList;

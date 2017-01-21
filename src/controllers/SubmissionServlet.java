@@ -15,7 +15,7 @@ import services.ConferenceService;
 import services.ConferenceServiceImpl;
 import services.SubmissionService;
 import services.SubmissionServiceImpl;
-import utility.UtileSubmission;
+import ws.UtileSubmission;
 
 /**
  * Servlet implementation class SubmissionServlet

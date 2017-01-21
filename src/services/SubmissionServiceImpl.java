@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.json.JSONObject;
 
 import beans.Submission;
-import utility.ConnectRest;
-import utility.UtileSubmission;
+import ws.ConnectRest;
+import ws.UtileSubmission;
 
 public class SubmissionServiceImpl implements SubmissionService{
 	

@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.json.JSONObject;
 
 import beans.Conference;
-import utility.ConnectRest;
-import utility.UtileConference;
+import ws.ConnectRest;
+import ws.UtileConference;
 
 public class ConferenceServiceImpl implements ConferenceService {
 	

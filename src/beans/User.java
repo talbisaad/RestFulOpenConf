@@ -3,7 +3,7 @@ package beans;
 public class User {
 
 	
-	private int idUser;
+	private String idUser;
 	private String userName;
 	private String userLastName;
 	private String mail;
@@ -39,7 +39,7 @@ public class User {
 		Reviewer = reviewer;
 	}
 
-	public User(int idUser, String userName, String userLastName, String mail, String password, String profile) {
+	public User(String idUser, String userName, String userLastName, String mail, String password, String profile) {
 		super();
 		this.idUser = idUser;
 		this.userName = userName;
@@ -53,11 +53,11 @@ public class User {
 		// TODO Auto-generated constructor stub
 		super();
 	}
-	public int getIdUser() {
+	public String getIdUser() {
 		return idUser;
 	}
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
+	public void setIdUser(String userId) {
+		this.idUser = userId;
 	}
 	public String getUserName() {
 		return userName;
@@ -94,6 +94,9 @@ public class User {
 	public String toString() {
 		return "User [userName=" + userName + ", userLastName=" + userLastName + "]";
 	}
+
+
+
 	
 	
 }

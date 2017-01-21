@@ -7,5 +7,7 @@ import beans.User;
 public interface SignUpService {
 	
 	User SaveUser(HttpServletRequest request);
+	
+	User signIn(HttpServletRequest request);
 
 }

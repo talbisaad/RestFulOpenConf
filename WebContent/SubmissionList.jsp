@@ -70,6 +70,7 @@
 						<td>Submission Title</td>
 						<td>Conference</td>
 						<td>keyword</td>
+						<td>Comments</td>
 						<td>Status</td>
 						<td>Modify</td>
 						<td>Delete</td>  
@@ -82,6 +83,10 @@
 							<td ><c:out  value="${c.submissionTitle}"/></td>
 							<td><c:out value="${c.conference.conferanceName}"/></td>
 							<td><c:out value="${c.keywords}"/></td>
+<<<<<<< HEAD
+=======
+							<td><c:out value="${c.reviewComments}"/></td>
+>>>>>>> e7591c77482012552fc418aa617981ec98438863
 							<td><c:out value="${c.status}"/></td>
 							<td><form action="SubmissionServlet?action=UpdateSubFromList" method="POST"><button style="border:0px solid black; background-color: transparent;" type="submit" name="Modifier"><img alt="modify" class="modifyicone"
 								src="CSS/modify.png"></button>

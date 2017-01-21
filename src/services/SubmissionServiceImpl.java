@@ -58,7 +58,10 @@ public class SubmissionServiceImpl implements SubmissionService{
 	@Override
 	public HttpServletRequest displaysubmissionFromList(HttpServletRequest request) {
 		
-		request.setAttribute("submission",getSubmissionByIdForList(request) );
+		JSONObject connexion = ConnectRest.connect();
+		Submission responseAddSubmission = UtileSubmission.getsubmissionToReview(request.getParameter("idSubmission"), connexion);
+
+		request.setAttribute("submission",responseAddSubmission);
 		request.setAttribute("creation", FALSE );
 		request.setAttribute("affichage", TRUE);
 			
@@ -69,7 +72,8 @@ public class SubmissionServiceImpl implements SubmissionService{
 	@Override
 	public Submission getSubmissionByIdForList(HttpServletRequest request) {
 		
-		//request.getParameter("idSubmission"); Pour avoir l'id ;)
+		;
+		
 		
 		Submission sub = new Submission();
 		sub.setIdSubmission("AAAA");
@@ -137,29 +141,12 @@ public ArrayList<Submission> getSubmissionListByConferenceSubject(HttpServletReq
 	public HttpServletRequest getSubmissionListById(HttpServletRequest request) {
 
 	//	chercher avec : request.getParameter("mail");
-
-		Submission sub1 = new Submission();
-		Submission sub2 = new Submission();
-		Submission sub3 = new Submission();
-					sub1.setSubmissionTitle("t1"); 
-					sub1.setIdSubmission("RER");
-					sub1.getConference().setConferenceSubject("title");
-					sub1.setKeywords("key");
-					sub2.setSubmissionTitle("t1"); 
-					sub2.setIdSubmission("RER");
-					sub2.getConference().setConferenceSubject("title");
-					sub2.setKeywords("key");
-					sub3.setSubmissionTitle("t1"); 
-					sub3.setIdSubmission("RER");
-					sub3.getConference().setConferenceSubject("title");
-					sub3.setKeywords("key");
-					
-		ArrayList<Submission> submissionList = new ArrayList<Submission>();			
-		submissionList.add(sub1);
-		submissionList.add(sub2);
-		submissionList.add(sub3);
-		request.setAttribute("lengh", submissionList.size());
-		request.setAttribute("submissionList", submissionList);
+		String email = request.getParameter("mail");
+		JSONObject connexion = ConnectRest.connect();
+		ArrayList<Submission>  responseAddSubmission = UtileSubmission.getsubmissionByEmail(email, connexion);
+		
+		request.setAttribute("lengh", responseAddSubmission.size());
+		request.setAttribute("submissionList", responseAddSubmission);
 		
 		return request;
 	}
@@ -180,15 +167,14 @@ public ArrayList<Submission> getSubmissionListByConferenceSubject(HttpServletReq
 	@Override
 	public HttpServletRequest updateSubmission(HttpServletRequest request) {
 
-		JSONObject connexion = ConnectRest.connect();
-		UtileSubmission.updateSubmission(submission.getIdSubmission(), connexion);
 
-		
+		//submission.setIdSubmission(request.getParameter("idSubmission"));
 		submission.setSubmissionTitle(request.getParameter("submissionTitle"));			
 		submission.setSubmissionTheme(request.getParameter("submissionTheme"));
 		submission.setKeywords(request.getParameter("keywords"));
 		submission.setSubmissionAbstract(request.getParameter("submissionAbstract"));
-		
+		JSONObject connexion = ConnectRest.connect();
+		UtileSubmission.updateSubmission(submission, connexion);
 		return displaySubmission(request);
 		
 	}

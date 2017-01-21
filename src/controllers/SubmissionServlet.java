@@ -144,7 +144,7 @@ public class SubmissionServlet extends HttpServlet {
 			
 		case UPDATESUBFROMLIST:
 			
-			
+			 request.setAttribute("submissionThemes", UtileSubmission.getSubmissionsThemes());
 			 this.getServletContext().getRequestDispatcher("/ManageSubmission.jsp").forward(submissionService.displaysubmissionFromList(request),response);	
 			 break;
 		

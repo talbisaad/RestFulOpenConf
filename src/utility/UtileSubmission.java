@@ -18,6 +18,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import beans.Conference;
 import beans.Submission;
 
 public  class UtileSubmission {
@@ -36,6 +37,11 @@ public  class UtileSubmission {
 	
 	public  static ArrayList<String> submissionThemes= new ArrayList<String>();
 	private static JSONObject json;
+	private static String Descison;
+	private static String conference;
+	private static String conferenceName;
+	private static String commment;
+	private static String keyword;
 	
 	
 	public static ArrayList<Submission> getsubmissionList(String conferenceName, JSONObject data) {
@@ -113,8 +119,6 @@ public  class UtileSubmission {
 	}
 
 	
-
-	
 	public static Submission getsubmissionToReview(String idSubmission, JSONObject data) {
 		
         
@@ -131,7 +135,7 @@ public  class UtileSubmission {
 			submissionList.clear();
 		try{
         HttpClient httpClient = HttpClientBuilder.create().build();
-		String uri = baseUri + "/query?q=Select+Id+,+Name+,+Subject__c+From+Submission__c+where+Id='"+idSubmission+"'";
+		String uri = baseUri + "/query?q=Select+Id+,+Name+,+Descison__c+,+keywords__c+,+Subject__c+,+Comment__c+From+Submission__c+where+Id='"+idSubmission+"'";
         System.out.println("Query URL: " + uri);
         HttpGet httpGet = new HttpGet(uri);
         httpGet.addHeader(oauthHeader);
@@ -147,7 +151,7 @@ public  class UtileSubmission {
                 System.out.println("JSON return of Query:\n" + json.toString(1));
                 
                 	submission= new Submission();
-
+                		
                 	submissionId = json.getJSONArray("records").getJSONObject(0).getString("Id");
                 	submission.setIdSubmission(submissionId);
                 	
@@ -155,7 +159,16 @@ public  class UtileSubmission {
                 	submission.setSubmissionTitle(name);
 
                 	theme = json.getJSONArray("records").getJSONObject(0).getString("Subject__c");
-                	submission.setSubmissionTheme(subject);
+                	submission.setSubmissionTheme(theme);
+                	
+                	commment = json.getJSONArray("records").getJSONObject(0).getString("Comment__c");
+                	submission.setReviewComments(commment);
+                	
+                	keyword = json.getJSONArray("records").getJSONObject(0).getString("keywords__c");
+                	submission.setKeywords((keyword));
+                	                         
+                	Descison = json.getJSONArray("records").getJSONObject(0).getString("Descison__c");
+                	submission.setStatus(Descison);
                 	                         
                 
                 System.out.println(" OBJET ::::: : Submission to revieuw "+submission);
@@ -183,6 +196,101 @@ public  class UtileSubmission {
 		
 	}
 
+	/// ABDH
+	public static ArrayList<Submission> getsubmissionByEmail(String email, JSONObject data) {
+		
+        
+		try {
+			baseUri = data.getString("baseUri");
+			System.out.println("DATA --> " + baseUri);
+			loginAccessToken = data.getString("loginAccessToken");
+		} catch (JSONException jsonException) {
+			jsonException.printStackTrace();
+		}
+
+		oauthHeader = new BasicHeader("Authorization", "OAuth " + loginAccessToken);
+		if(submissionList!=null)
+			submissionList.clear();
+		try{
+        HttpClient httpClient = HttpClientBuilder.create().build();
+		String uri = baseUri + "/query?q=Select+Id+,+Name+,+Descison__c+,+keywords__c+,+Subject__c+,+Conference__r.Name+,+Comment__c+From+Submission__c+where+User__r.Email__c='"+email+"'";
+
+        System.out.println("Query URL: " + uri);
+        HttpGet httpGet = new HttpGet(uri);
+        httpGet.addHeader(oauthHeader);
+        httpGet.addHeader(prettyPrintHeader);
+
+        // Make the request.
+        HttpResponse response = httpClient.execute(httpGet);
+        int statusCode = response.getStatusLine().getStatusCode();
+        if (statusCode == 200) {
+            String response_string = EntityUtils.toString(response.getEntity());
+            try {
+                JSONObject json = new JSONObject(response_string);
+                
+                System.out.println("JSON return of Query:\n" + json.toString(1));
+                JSONArray j = json.getJSONArray("records");
+                
+                System.out.println("MON JSON" +j);
+
+                for (int i = 0; i < j.length(); i++){
+                
+                	submission= new Submission();
+
+                	submissionId = json.getJSONArray("records").getJSONObject(i).getString("Id");
+                	submission.setIdSubmission(submissionId);
+                	
+                	name = json.getJSONArray("records").getJSONObject(i).getString("Name");
+                	submission.setSubmissionTitle(name);
+
+                	theme = json.getJSONArray("records").getJSONObject(i).getString("Subject__c");
+                	submission.setSubmissionTheme(subject);
+                	
+                	commment = json.getJSONArray("records").getJSONObject(i).getString("Comment__c");
+                	submission.setReviewComments(commment);
+                	
+                	keyword = json.getJSONArray("records").getJSONObject(i).getString("keywords__c");
+                	submission.setKeywords((keyword));
+                	                         
+                	Descison = json.getJSONArray("records").getJSONObject(i).getString("Descison__c");
+                	submission.setStatus(Descison);
+                	
+                	 conferenceName = json.getJSONArray("records").getJSONObject(i).getJSONObject("Conference__r").getString("Name");
+                	
+             //   	conferenceName = json.getJSONArray("records").getJSONObject(i).getString("Conference__r");
+                	submission.getConference().setConferanceName(conferenceName);
+                	
+                    submissionList.add(submission);	
+
+                }
+
+                	
+                System.out.println(" OBJET ::::: : Submission to SHOW WITH EMAIL  "+submission);
+
+                return submissionList;
+            } catch (JSONException je) {
+                je.printStackTrace();
+            }
+        } else {
+            System.out.println("Hoops ça marche pas . Status erreur " + statusCode);
+            System.out.println("ERROR NUMBER: " + response.getStatusLine().getStatusCode());
+            //System.out.println(getBody(response.getEntity().getContent()));
+            System.exit(-1);
+        }
+		
+		
+        
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } catch (NullPointerException npe) {
+            npe.printStackTrace();
+        }
+        
+		return null;
+		
+	}
+
+	
 	 
 	public static JSONObject addSubmission(Submission submission, JSONObject data) {
 		
@@ -202,6 +310,7 @@ public  class UtileSubmission {
 		JSONObject s = new JSONObject();
 		s.put("Name", submission.getSubmissionTitle());
 		s.put("keywords__c", submission.getKeywords());
+		s.put("Subject__c",submission.getSubmissionTheme());
 		s.put("Conference__c","a000Y000009eL3K" ); // en dur dans le code
 		s.put("User__c", "a020Y000002Dc0I"); // en dur dans le code dans l'attente de récuprer via les sessions
 		
@@ -241,10 +350,8 @@ public  class UtileSubmission {
 		return json;
 	
 	}
-
 	
 	
-// a tester
 	public static JSONObject updateSubmissionByReviewer(Submission submission, JSONObject data) {
 		
 		System.out.println(" ++++ JE SUIS DANS updateSubmissionByReviewer " + baseUri);
@@ -302,8 +409,7 @@ public  class UtileSubmission {
 	}
 
 
- // a tester 
-	public static JSONObject updateSubmission(String submissionId, JSONObject data) {
+	public static JSONObject updateSubmission(Submission submission, JSONObject data) {
 		
 		
 		try {
@@ -319,14 +425,13 @@ public  class UtileSubmission {
 		String uri = baseUri + "/sobjects/Submission__c/"+submissionId;
 
 		JSONObject s = new JSONObject();
-		
-		
-		
-		
+		s.put("Subject__c", submission.getSubmissionTheme());
+		s.put("keywords__c", submission.getKeywords());
 		s.put("submissionAbstract__c", submission.getSubmissionAbstract());
-		s.put("Subject__c", submission.getSubmissionTheme()); // a modifer
-		s.put("Abstract__c", submission.getSubmissionAbstract());
 		
+		
+        System.out.println("______SUBMISSION JSON______ :  "+s);
+
 		try {
 			HttpClient httpClient = HttpClientBuilder.create().build();
 
@@ -358,8 +463,7 @@ public  class UtileSubmission {
 	
 	}
 	
-	
-	
+		
 	public static void deleteSubmission(String idToDelete, JSONObject data){
 		
 		

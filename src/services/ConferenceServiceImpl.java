@@ -43,14 +43,18 @@ public class ConferenceServiceImpl implements ConferenceService {
 	public void createConference(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		
+		
+		//conference.setIdConference("tmp");
 		conference.setConferanceName(request.getParameter("conferanceName"));
 		conference.setConferenceSubject(request.getParameter("conferenceSubject"));
-		conference.setTime(request.getParameter("time"));
+		//conference.setTime(request.getParameter("time"));
 		conference.setParticipantNumber(Integer.parseInt(request.getParameter("participantNumber")));
 		
-		//méthode de création dans le WS
+		JSONObject connexion = ConnectRest.connect();
+		System.out.println("connexion +++ --->" +connexion);
+		UtileConference.addConference(conference, connexion);
 		
-		conference.setIdConference("tmp");
+		
 		
 			
 	}

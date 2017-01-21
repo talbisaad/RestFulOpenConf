@@ -60,7 +60,7 @@
 	
 	
 		
-		<br> <br> <span class="ttl">List of conference</span><br>
+		<br> <br> <span class="ttl">List of Submission</span><br>
 		<br>
 		<br>
 		<div class="tables">
@@ -81,7 +81,7 @@
 
 							<td ><c:out  value="${c.submissionTitle}"/></td>
 							<td><c:out value="${c.conference.conferanceName}"/></td>
-							<td><c:out value="${c.submissionTheme}"/></td>
+							<td><c:out value="${c.keywords}"/></td>
 							<td><c:out value="${c.status}"/></td>
 							<td><form action="SubmissionServlet?action=UpdateSubFromList" method="POST"><button style="border:0px solid black; background-color: transparent;" type="submit" name="Modifier"><img alt="modify" class="modifyicone"
 								src="CSS/modify.png"></button>

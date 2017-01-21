@@ -67,6 +67,7 @@
 		<br>
 		<br>
 		<div class="tables">
+		<form action="SubmissionServlet?action=Review" method="POST">
 			<table cellpadding="0" cellspacing="0" class="tabs">
 				<thead>
 					<tr>
@@ -81,18 +82,24 @@
 					<c:forEach begin="0" end="${lengh}" step="1" varStatus="loopCounter" items="${SubmissionList}" var="c">
 						<tr>
 
-							<td ><c:out  value="${c.submissionTitle}"/></td>
+							<td ><c:out  value="${c.idSubmission}"/></td>
 							<td><c:out value="${c.conference.conferanceName}"/></td>
 							<td><c:out value="${c.submissionTheme}"/></td>
 							<td><c:out value="${c.status}" /></td>
-							  <td><form action="SubmissionServlet?action=Review" method="POST"><button style="border:0px solid black; background-color: transparent;" type="submit" name="Modifier"><img alt="modify" class="modifyicone"
+							  <td><button style="border:0px solid black; background-color: transparent;" type="submit" name="Modifier"><img alt="modify" class="modifyicone"
 								src="CSS/modify.png"></button>
+<<<<<<< HEAD
 								<input type="hidden" name="IdRow" value="${c.idSubmission}"/>
 								</form></td>							 
+=======
+								<input type="hidden" name="idSubmission" value="${c.idSubmission}"/>
+								</td>							 
+>>>>>>> e7d5ea9308fcd589dbba789d5320f70ea3439c7f
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
+			</form>
 		</div>
 	</div>
 </body>

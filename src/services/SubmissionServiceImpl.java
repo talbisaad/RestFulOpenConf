@@ -22,13 +22,17 @@ public class SubmissionServiceImpl implements SubmissionService{
 
 	public void createSubmission(HttpServletRequest request) {
 		
+		
 		submission.getConference().setConferenceSubject(request.getParameter("conferenceSubject"));
+		
 		submission.setSubmissionTitle(request.getParameter("submissionTitle"));
 		submission.getUser().setMail(request.getParameter("mail"));
 		
 		submission.setSubmissionTheme(request.getParameter("submissionTheme"));
 		submission.setKeywords(request.getParameter("keywords"));
 		submission.setSubmissionAbstract(request.getParameter("submissionAbstract"));
+		
+		
 		
 		JSONObject connexion = ConnectRest.connect();
 		System.out.println("connexion +++ --->" +connexion);
@@ -79,7 +83,13 @@ public class SubmissionServiceImpl implements SubmissionService{
 		return sub;
 	} 
 
+<<<<<<< HEAD
 	public ArrayList<Submission> getSubmissionListByConferenceSubject(HttpServletRequest request) {
+=======
+	
+@Override
+public ArrayList<Submission> getSubmissionListByConferenceSubject(HttpServletRequest request) {
+>>>>>>> e7d5ea9308fcd589dbba789d5320f70ea3439c7f
 		
 		String conferenceSubject = request.getParameter("conferenceSubject");
 		
@@ -95,16 +105,14 @@ public class SubmissionServiceImpl implements SubmissionService{
 	@Override
 	public HttpServletRequest getSubmissionById(HttpServletRequest request) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("getSubmissionById " );
+
 		//Faut chercher la submission par l'id 
-			Submission sub = new Submission();
-			
-			sub.getConference().setConferanceName("Ingenering conference");
-			sub.getUser().setMail("Saad@hotmail.fr");
-			sub.setSubmissionTitle("Titre de submission");
-			sub.setSubmissionTheme("le theme de la sub");
-			
-			request.setAttribute("submission", sub);
+			String idSubmission = request.getParameter("idSubmission");
+			JSONObject connexion = ConnectRest.connect();
+			Submission responseAddSubmission = UtileSubmission.getsubmissionToReview(idSubmission, connexion);
+
+			request.setAttribute("submission", responseAddSubmission);
 		return request;
 	}
 
@@ -112,24 +120,28 @@ public class SubmissionServiceImpl implements SubmissionService{
 	public void saveReviewSubmission(HttpServletRequest request) {
 		
 		//il me faut l'id de la submission en question.
-		String submissionId = "TYUPZJJZ";
 		
+<<<<<<< HEAD
 		JSONObject connexion = ConnectRest.connect();
 		 UtileSubmission.updateSubmissionByReviewer(submissionId, connexion);
 
+=======
+		Submission s= new Submission();
+		s.setIdSubmission(request.getParameter("submissionId"));
+		s.setStatus(request.getParameter("droit"));
+		s.setGrad(request.getParameter("Grad"));
+		s.setReviewComments(request.getParameter("Comments"));
+				
+>>>>>>> e7d5ea9308fcd589dbba789d5320f70ea3439c7f
 		
+		JSONObject connexion = ConnectRest.connect();
+		JSONObject responseAddSubmission = UtileSubmission.updateSubmissionByReviewer(s, connexion);
 
-		
-		Submission sub = new Submission();
-		
-		sub.setStatus(request.getParameter("droit"));
-		sub.setReviewComments(request.getParameter("Comments"));
-		sub.setGrad(request.getParameter("Grad"));
-		
-		
+			
 		
 	}
 
+<<<<<<< HEAD
 	@Override
 	public HttpServletRequest getSubmissionListById(HttpServletRequest request) {
 
@@ -160,6 +172,9 @@ public class SubmissionServiceImpl implements SubmissionService{
 		
 		return request;
 	}
+=======
+	
+>>>>>>> e7d5ea9308fcd589dbba789d5320f70ea3439c7f
 
 	@Override
 	public Submission getSubmission() {
@@ -176,7 +191,10 @@ public class SubmissionServiceImpl implements SubmissionService{
 	@Override
 	public HttpServletRequest updateSubmission(HttpServletRequest request) {
 
-	//	submission.setIdSubmission();
+		JSONObject connexion = ConnectRest.connect();
+		UtileSubmission.updateSubmission(submission.getIdSubmission(), connexion);
+
+		
 		submission.setSubmissionTitle(request.getParameter("submissionTitle"));			
 		submission.setSubmissionTheme(request.getParameter("submissionTheme"));
 		submission.setKeywords(request.getParameter("keywords"));
@@ -189,6 +207,7 @@ public class SubmissionServiceImpl implements SubmissionService{
 	@Override
 	public HttpServletRequest deleteSubmission(HttpServletRequest request) {
 		
+<<<<<<< HEAD
 		
 		
 		
@@ -198,6 +217,15 @@ public class SubmissionServiceImpl implements SubmissionService{
 	
 
 	
+=======
+		String idToDelete = submission.getIdSubmission();
+		JSONObject connexion = ConnectRest.connect();
+		UtileSubmission.deleteSubmission(idToDelete, connexion);
+
+		return null;
+	}
+
+>>>>>>> e7d5ea9308fcd589dbba789d5320f70ea3439c7f
 
 	 
 

@@ -127,7 +127,7 @@
 					 
 						<input type="submit" name="Modifier" value="Save Review"
 							class="submit" />
-				 
+				 		<input type="hidden" name="idSubmission" value="${submission.idSubmission}"/>
 				</td>
 				 
 			</tr>

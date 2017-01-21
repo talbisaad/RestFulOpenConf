@@ -129,6 +129,7 @@ public class SubmissionServlet extends HttpServlet {
 			 break;
 			 
 		  case DELETESUBMISSION:
+<<<<<<< HEAD
 			 
 			 //request.getParameter("idSubmission");
 			  this.getServletContext().getRequestDispatcher("/SubmissionList.jsp").forward(submissionService.deleteSubmission(request), response);
@@ -138,6 +139,10 @@ public class SubmissionServlet extends HttpServlet {
 			  
 			  
 			  this.getServletContext().getRequestDispatcher("/SubmissionList.jsp").forward(submissionService.getSubmissionListById(request), response);
+=======
+			  	submissionService.deleteSublission(request);
+				this.getServletContext().getRequestDispatcher("/DisplaySubmission.jsp").forward(request, response);
+>>>>>>> e7d5ea9308fcd589dbba789d5320f70ea3439c7f
 			  break;
 			
 			

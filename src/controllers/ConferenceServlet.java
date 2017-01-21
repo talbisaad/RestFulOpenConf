@@ -17,48 +17,65 @@ import services.ConferenceServiceImpl;
  */
 public class ConferenceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       private ConferenceService conferenceService;
-       private ArrayList<Conference> conferenceList;
+	private ConferenceService conferenceService;
+	private ArrayList<Conference> conferenceList;
+	private static final String CONFERENCELIST = "ConferenceList";
+	private static final String DISPLAYCONFERENCE = "DisplayConference";
+	private static final String MANAGECONFERENCE = "ManageConference";
 
-   @Override
-public void init() {
-
-
-}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		String page = request.getRequestURL().substring(31);
-		conferenceList= new ArrayList<Conference>();
-		conferenceService= new ConferenceServiceImpl();
-		
-		//Affichage de la liste des conf�rences 
-		if(page.equals("ConferenceList")){
-			conferenceList=conferenceService.DisplayConferenceList();
-		request.setAttribute("conferencelist", conferenceList);
-		request.setAttribute("lengh",conferenceList.size());
-		this.getServletContext().getRequestDispatcher("/ConferenceList.jsp").forward(request, response);
-
-		}
-		if(page.equals("DisplayConference")){
-		this.getServletContext().getRequestDispatcher("/DisplayConference.jsp").forward(request, response);
-		}
+	@Override
+	public void init() {
 
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+
+		String page = request.getRequestURL().substring(31);
+		conferenceList = new ArrayList<Conference>();
+		conferenceService = new ConferenceServiceImpl();
+
+		// Affichage de la liste des conferences
+
+		switch (page) {
+		case CONFERENCELIST:
+			conferenceList = conferenceService.DisplayConferenceList();
+			request.setAttribute("conferencelist", conferenceList);
+			request.setAttribute("lengh", conferenceList.size());
+			this.getServletContext().getRequestDispatcher("/ConferenceList.jsp").forward(request, response);
+			break;
+
+		case DISPLAYCONFERENCE:
+			this.getServletContext().getRequestDispatcher("/DisplayConference.jsp").forward(request, response);
+			break;
+
+		case MANAGECONFERENCE:
+
+			this.getServletContext().getRequestDispatcher("/ManageConference.jsp").forward(request, response);
+			break;
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+<<<<<<< HEAD
 		
 		//list - methode;
 		//request?set
  
+=======
+
+>>>>>>> 3906eeff8c2f64b669724961c1c4a013b3c27921
 	}
 
 }

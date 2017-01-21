@@ -19,7 +19,7 @@ import org.json.JSONObject;
 
 import beans.Submission;
 
-public class UtileSubmission {
+public  class UtileSubmission {
 	
 	public static ArrayList<Submission> submissionList = new ArrayList<Submission>();
 	public static Submission submission;
@@ -31,6 +31,7 @@ public class UtileSubmission {
 	private static String loginAccessToken;
 	private static Header oauthHeader;
 	private static Header prettyPrintHeader = new BasicHeader("X-PrettyPrint", "1");
+<<<<<<< HEAD
 	
 
 	
@@ -112,6 +113,10 @@ public class UtileSubmission {
 
 	
 
+=======
+	public  static ArrayList<String> submissionThemes= new ArrayList<String>();
+	private static JSONObject json;
+>>>>>>> 3906eeff8c2f64b669724961c1c4a013b3c27921
 	public static JSONObject addSubmission(Submission submission, JSONObject data) {
 		
 		
@@ -151,9 +156,10 @@ public class UtileSubmission {
 			HttpResponse response = httpClient.execute(httpPost);
 			// Process the results
 			int statusCode = response.getStatusLine().getStatusCode();
+			
 			if (statusCode == 201) {
 				String response_string = EntityUtils.toString(response.getEntity());
-				JSONObject json = new JSONObject(response_string);
+			  json = new JSONObject(response_string);
 				// get ID of new record has been added 
 				submissionId = json.getString("id");
 				System.out.println("ID  de new SUB: " + submissionId );
@@ -167,7 +173,7 @@ public class UtileSubmission {
 			npe.printStackTrace();
 		}
 
-		return null;
+		return json;
 	
 	}
 
@@ -277,6 +283,15 @@ public class UtileSubmission {
 		return null;
 	
 	}
+	
+public static 	ArrayList<String> getSubmissionsThemes(){
+	submissionThemes.add("Programming");
+	submissionThemes.add("Classic papers");
+	submissionThemes.add("Networking");
+	submissionThemes.add("Computer science");
+		return submissionThemes;
+	}
+	
 
 	
 

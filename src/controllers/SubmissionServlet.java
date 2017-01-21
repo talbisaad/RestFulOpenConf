@@ -15,7 +15,7 @@ import services.ConferenceService;
 import services.ConferenceServiceImpl;
 import services.SubmissionService;
 import services.SubmissionServiceImpl;
-import utility.UtileSubmission;
+import ws.UtileSubmission;
 
 /**
  * Servlet implementation class SubmissionServlet
@@ -144,7 +144,7 @@ public class SubmissionServlet extends HttpServlet {
 			
 		case UPDATESUBFROMLIST:
 			
-			
+			 request.setAttribute("submissionThemes", UtileSubmission.getSubmissionsThemes());
 			 this.getServletContext().getRequestDispatcher("/ManageSubmission.jsp").forward(submissionService.displaysubmissionFromList(request),response);	
 			 break;
 		

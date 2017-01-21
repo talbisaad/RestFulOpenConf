@@ -5,8 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.json.JSONObject;
 
 import beans.User;
-import utility.ConnectRest;
-import utility.UtileUser;
+import ws.ConnectRest;
+import ws.UtileUser;
 
 public class SignUpServiceImpl implements SignUpService {
 
@@ -60,8 +60,14 @@ public class SignUpServiceImpl implements SignUpService {
 	public User signIn(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		
-		userSignIn.setUserName(request.getParameter("username"));
+		
+		userSignIn.setMail(request.getParameter("username"));
 		userSignIn.setPassword(request.getParameter("password"));
+		
+		
+		JSONObject connexion = ConnectRest.connect();
+		UtileUser.sign(userSignIn.getMail(), userSignIn.getPassword(), connexion);
+		
 		
 		//if(userResult!=null)
 	//	return userSignIn;

@@ -67,6 +67,7 @@ public class ConferenceServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		
 		String action = request.getParameter("action");
 		
@@ -80,7 +81,7 @@ public class ConferenceServlet extends HttpServlet {
 			break;
 		
 		}
-  
+
 	}
 
 }

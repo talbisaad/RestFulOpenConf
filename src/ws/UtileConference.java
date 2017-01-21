@@ -1,4 +1,4 @@
-package utility;
+package ws;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -110,7 +110,7 @@ public class UtileConference {
 	}
 
 
-	public static JSONObject addConference(Conference conference, JSONObject data) {
+	public static void addConference(Conference conference, JSONObject data) {
 
 		try {
 			baseUri = data.getString("baseUri");
@@ -121,13 +121,13 @@ public class UtileConference {
 		}
 
 		oauthHeader = new BasicHeader("Authorization", "OAuth " + loginAccessToken);
-		String uri = baseUri + "/sobjects/User_App__c/";
+		String uri = baseUri + "/sobjects/Manager_Conference__c/";
 
 		JSONObject c = new JSONObject();
 		c.put("Name", conference.getConferanceName());
 		c.put("Subject__c", conference.getConferenceSubject());
 		c.put("Number_of_participants__c", conference.getParticipantNumber());
-		c.put("Date__c", conference.getParticipantNumber());
+		//c.put("Date__c", conference.getParticipantNumber());
 
 
 		try {
@@ -161,7 +161,6 @@ public class UtileConference {
 			npe.printStackTrace();
 		}
 
-		return null;
 
 	}
 

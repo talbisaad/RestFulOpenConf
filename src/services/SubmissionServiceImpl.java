@@ -52,25 +52,15 @@ public class SubmissionServiceImpl implements SubmissionService{
 
 	public ArrayList<Submission> getSubmissionList(HttpServletRequest request) {
 		
-		String conferenceSubject=request.getParameter("conferenceSubject");
+		String conferenceSubject = request.getParameter("conferenceSubject");
 		
-		JSONObject connexion = ConnectRest.connect();
-		//ArrayList<Submission> SubmissionList = UtileSubmission.getsublmissionList(conferenceSubject, connexion);
-
-
-		
+		JSONObject connexion = ConnectRest.connect();	
 		System.out.println("get conferenceName ++++ "+ conferenceSubject );
-		//String conferenceId = request.getParameter(arg0)
-		
-		
-		
-		//Faut que tu r�cupere la liste des submission dont conferenceSubject = conferenceSubject
-		//Submission sub1 = new Submission(0, "Titre1", "Theme", "keyw", "test", "ok");
-		
-		//ArrayList<Submission> SubmissionList= new ArrayList<Submission>();
-		
-		//SubmissionList.add(sub1);
-		return UtileSubmission.getsublmissionList(conferenceSubject, connexion);
+		ArrayList<Submission> s = new  ArrayList<Submission>();
+		s = UtileSubmission.getsubmissionList(conferenceSubject, connexion);
+		System.out.println("object subminssin ---> "+ s );
+
+		return s;
 	}
 
 	@Override
@@ -91,12 +81,34 @@ public class SubmissionServiceImpl implements SubmissionService{
 
 	@Override
 	public void saveReviewSubmission(HttpServletRequest request) {
+		
+		//il me faut l'id de la submission en question.
+		String submissionId = "TYUPZJJZ";
+		
+		JSONObject connexion = ConnectRest.connect();
+		JSONObject responseAddSubmission = UtileSubmission.updateSubmissionByReviewer(submissionId, connexion);
+
+		
+
+		
 		Submission sub = new Submission();
 		
 		sub.setStatus(request.getParameter("droit"));
 		sub.setReviewComments(request.getParameter("Comments"));
 		sub.setGrad(request.getParameter("Grad"));
 		
+		
+		
+	}
+
+	@Override
+	public HttpServletRequest getSubmissionListById(HttpServletRequest request) {
+
+		 
+		
+		//request.setAttribute("conferencelistbyId", conferencelistbyId);
+		
+		return request;
 	}
  
 

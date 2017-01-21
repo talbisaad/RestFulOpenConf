@@ -13,6 +13,7 @@ public interface SubmissionService {
 	HttpServletRequest  displaySubmission(HttpServletRequest request);
 	ArrayList<Submission> getSubmissionList(HttpServletRequest request);
 	HttpServletRequest 	getSubmissionById(HttpServletRequest request);
-						void			saveReviewSubmission(HttpServletRequest request);
+	void saveReviewSubmission(HttpServletRequest request);
+	HttpServletRequest getSubmissionListById(HttpServletRequest request);
 	
 }

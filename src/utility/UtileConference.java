@@ -7,6 +7,7 @@ import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPatch;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -20,7 +21,6 @@ import beans.Conference;
 
 public class UtileConference {
 	
-	//public static ArrayList<String> conference= new ArrayList<String>();
 	public static ArrayList<Conference> conferenceList = new ArrayList<Conference>();
 	public static Conference conference;
 
@@ -33,7 +33,7 @@ public class UtileConference {
 	private static Header oauthHeader;
 	private static Header prettyPrintHeader = new BasicHeader("X-PrettyPrint", "1");
 	
-	public static ArrayList<Conference> getConference(JSONObject data) {
+	public static ArrayList<Conference> getConferences(JSONObject data) {
 		
         
 		try {
@@ -80,13 +80,7 @@ public class UtileConference {
                 	
                 	Subject__c = json.getJSONArray("records").getJSONObject(i).getString("Subject__c");
                 	conference.setConferenceSubject(Subject__c);
-
-
-                    conferenceList.add(conference);
-                   
-                    
-                    
-                	
+                    conferenceList.add(conference);	
                     System.out.println("conference conference is: " + i + ". " + conferenceId + " " + Name + " " + Number_of_participants__c + "(" + Subject__c + ")");
                 }
                 
@@ -134,6 +128,7 @@ public class UtileConference {
 		c.put("Name", conference.getConferanceName());
 		c.put("Subject__c", conference.getConferenceSubject());
 		c.put("Number_of_participants__c", conference.getParticipantNumber());
+		c.put("Date__c", conference.getParticipantNumber());
 
 
 		try {
@@ -171,6 +166,6 @@ public class UtileConference {
 
 	}
 
-	
 
+	
 }

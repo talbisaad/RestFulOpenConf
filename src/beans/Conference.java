@@ -7,13 +7,12 @@ public class Conference {
 	private String idConference;
 	private String conferanceName;
 	private String conferenceSubject;
-	private String  time;
+	private String  time; // format date in database 2017-01-12
 	private int participantNumber;
 	private String actualparticipantNumber;
 	private ArrayList<Submission> submissionList;
 	
 	
-
 
 	public Conference(String idConference, String conferanceName, String conferenceSubject, String time,
 			int participantNumber, String actualparticipantNumber) {

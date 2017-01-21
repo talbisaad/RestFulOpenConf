@@ -9,8 +9,36 @@ public class User {
 	private String mail;
 	private String password;
 	private String profile;
+	private boolean Chercheur;
+	private boolean Comite;
+	private boolean Reviewer;
+
 	
 		
+	public boolean isChercheur() {
+		return Chercheur;
+	}
+
+	public void setChercheur(boolean chercheur) {
+		Chercheur = chercheur;
+	}
+
+	public boolean isComite() {
+		return Comite;
+	}
+
+	public void setComite(boolean comite) {
+		Comite = comite;
+	}
+
+	public boolean isReviewer() {
+		return Reviewer;
+	}
+
+	public void setReviewer(boolean reviewer) {
+		Reviewer = reviewer;
+	}
+
 	public User(int idUser, String userName, String userLastName, String mail, String password, String profile) {
 		super();
 		this.idUser = idUser;

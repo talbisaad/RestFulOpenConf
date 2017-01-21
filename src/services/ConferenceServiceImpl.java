@@ -22,7 +22,7 @@ public class ConferenceServiceImpl implements ConferenceService {
 		
 		JSONObject connexion = ConnectRest.connect();
 		System.out.println("connexion +++ --->" +connexion);
-		responseGetConferenceList = UtileConference.getConference(connexion);
+		responseGetConferenceList = UtileConference.getConferences(connexion);
 		
 		System.out.println("after response " +responseGetConferenceList);
 

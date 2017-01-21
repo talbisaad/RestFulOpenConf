@@ -7,6 +7,7 @@ import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPatch;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -30,66 +31,11 @@ public class UtileSubmission {
 	private static String loginAccessToken;
 	private static Header oauthHeader;
 	private static Header prettyPrintHeader = new BasicHeader("X-PrettyPrint", "1");
-
-	public static JSONObject addSubmission(Submission submission, JSONObject data) {
-		
-		
-		try {
-			baseUri = data.getString("baseUri");
-			System.out.println("DATA --> " + baseUri);
-			loginAccessToken = data.getString("loginAccessToken");
-		} catch (JSONException jsonException) {
-			jsonException.printStackTrace();
-		}
-
-		oauthHeader = new BasicHeader("Authorization", "OAuth " + loginAccessToken);
-		String uri = baseUri + "/sobjects/Submission__c/";
-
-		JSONObject s = new JSONObject();
-		s.put("Name", submission.getSubmissionTitle());
-		s.put("keywords__c", submission.getKeywords());
-		s.put("Conference__c", "a000Y000009eL3K"); // en dur dans le code
-		s.put("User__c", "a020Y000002Dc0I"); // en dur dans le code
-		
-
-
-
-		try {
-			HttpClient httpClient = HttpClientBuilder.create().build();
-
-			HttpPost httpPost = new HttpPost(uri);
-			httpPost.addHeader(oauthHeader);
-			httpPost.addHeader(prettyPrintHeader);
-
-			StringEntity body = new StringEntity(s.toString(1));
-			body.setContentType("application/json");
-			httpPost.setEntity(body);
-
-			// Allons-y !
-			HttpResponse response = httpClient.execute(httpPost);
-			// Process the results
-			int statusCode = response.getStatusLine().getStatusCode();
-			if (statusCode == 201) {
-				String response_string = EntityUtils.toString(response.getEntity());
-				JSONObject json = new JSONObject(response_string);
-				// get ID of new record has been added 
-				submissionId = json.getString("id");
-				System.out.println("ID  de new SUB: " + submissionId );
-			} else {
-				System.out.println("FAILED ERROR CODE  " + statusCode);
-			}
-
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		} catch (NullPointerException npe) {
-			npe.printStackTrace();
-		}
-
-		return null;
 	
-	}
+
 	
-	public static ArrayList<Submission> getsublmissionList(String conferenceName, JSONObject data) {
+	
+	public static ArrayList<Submission> getsubmissionList(String conferenceName, JSONObject data) {
 		
         
 		try {
@@ -163,5 +109,175 @@ public class UtileSubmission {
 
 		
 	}
+
+	
+
+	public static JSONObject addSubmission(Submission submission, JSONObject data) {
+		
+		
+		try {
+			baseUri = data.getString("baseUri");
+			System.out.println("DATA --> " + baseUri);
+			loginAccessToken = data.getString("loginAccessToken");
+		} catch (JSONException jsonException) {
+			jsonException.printStackTrace();
+		}
+
+		oauthHeader = new BasicHeader("Authorization", "OAuth " + loginAccessToken);
+		
+		String uri = baseUri + "/sobjects/Submission__c/";
+
+		JSONObject s = new JSONObject();
+		s.put("Name", submission.getSubmissionTitle());
+		s.put("keywords__c", submission.getKeywords());
+		s.put("Conference__c", "a000Y000009eL3K"); // en dur dans le code
+		s.put("User__c", "a020Y000002Dc0I"); // en dur dans le code
+		
+
+
+
+		try {
+			HttpClient httpClient = HttpClientBuilder.create().build();
+
+			HttpPost httpPost = new HttpPost(uri);
+			httpPost.addHeader(oauthHeader);
+			httpPost.addHeader(prettyPrintHeader);
+
+			StringEntity body = new StringEntity(s.toString(1));
+			body.setContentType("application/json");
+			httpPost.setEntity(body);
+
+			// Allons-y !
+			HttpResponse response = httpClient.execute(httpPost);
+			// Process the results
+			int statusCode = response.getStatusLine().getStatusCode();
+			if (statusCode == 201) {
+				String response_string = EntityUtils.toString(response.getEntity());
+				JSONObject json = new JSONObject(response_string);
+				// get ID of new record has been added 
+				submissionId = json.getString("id");
+				System.out.println("ID  de new SUB: " + submissionId );
+			} else {
+				System.out.println("FAILED ERROR CODE  " + statusCode);
+			}
+
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		} catch (NullPointerException npe) {
+			npe.printStackTrace();
+		}
+
+		return null;
+	
+	}
+
+	
+	
+// a tester
+	public static JSONObject updateSubmissionByReviewer(String submissionId, JSONObject data) {
+		
+		
+		try {
+			baseUri = data.getString("baseUri");
+			System.out.println("DATA --> " + baseUri);
+			loginAccessToken = data.getString("loginAccessToken");
+		} catch (JSONException jsonException) {
+			jsonException.printStackTrace();
+		}
+
+		oauthHeader = new BasicHeader("Authorization", "OAuth " + loginAccessToken);
+		
+		String uri = baseUri + "/sobjects/Submission__c/"+submissionId;
+
+		JSONObject s = new JSONObject();
+		s.put("Descison__c", submission.getStatus());
+		s.put("Comment__c", submission.getReviewComments());
+		s.put("Grad__c", submission.getGrad());
+		
+		try {
+			HttpClient httpClient = HttpClientBuilder.create().build();
+
+			HttpPatch httpPatch = new HttpPatch(uri); // HttpPatch cest pour faire un update basant sur l'Id de record 
+            httpPatch.addHeader(oauthHeader);
+            httpPatch.addHeader(prettyPrintHeader);
+            StringEntity body = new StringEntity(s.toString(1));
+            body.setContentType("application/json");
+            httpPatch.setEntity(body);
+ 
+            HttpResponse response = httpClient.execute(httpPatch);
+ 
+            int statusCode = response.getStatusLine().getStatusCode();
+            if (statusCode == 204) {
+                System.out.println("Upload submission successfully ");
+            } else {
+                System.out.println("OPPS!! ERROR , CODE :  " + statusCode);
+            }
+        } catch (JSONException e) {
+            System.out.println("Problem de JSON ou autre");
+            e.printStackTrace();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } catch (NullPointerException npe) {
+            npe.printStackTrace();
+        }
+
+		return null;
+	
+	}
+
+
+ // a tester 
+	public static JSONObject updateSubmission(String submissionId, JSONObject data) {
+		
+		
+		try {
+			baseUri = data.getString("baseUri");
+			System.out.println("DATA --> " + baseUri);
+			loginAccessToken = data.getString("loginAccessToken");
+		} catch (JSONException jsonException) {
+			jsonException.printStackTrace();
+		}
+
+		oauthHeader = new BasicHeader("Authorization", "OAuth " + loginAccessToken);
+		
+		String uri = baseUri + "/sobjects/Submission__c/"+submissionId;
+
+		JSONObject s = new JSONObject();
+		s.put("submissionAbstract__c", submission.getSubmissionAbstract());
+		s.put("Subject__c", submission.getSubmissionTheme()); // a modifer
+		s.put("Abstract__c", submission.getSubmissionAbstract());
+		
+		try {
+			HttpClient httpClient = HttpClientBuilder.create().build();
+
+			HttpPatch httpPatch = new HttpPatch(uri); // HttpPatch cest pour faire un update basant sur l'Id de record 
+            httpPatch.addHeader(oauthHeader);
+            httpPatch.addHeader(prettyPrintHeader);
+            StringEntity body = new StringEntity(s.toString(1));
+            body.setContentType("application/json");
+            httpPatch.setEntity(body);
+ 
+            HttpResponse response = httpClient.execute(httpPatch);
+ 
+            int statusCode = response.getStatusLine().getStatusCode();
+            if (statusCode == 204) {
+                System.out.println("Upload submission successfully ");
+            } else {
+                System.out.println("OPPS!! ERROR , CODE :  " + statusCode);
+            }
+        } catch (JSONException e) {
+            System.out.println("Problem de JSON ou autre");
+            e.printStackTrace();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } catch (NullPointerException npe) {
+            npe.printStackTrace();
+        }
+
+		return null;
+	
+	}
+
+	
 
 }

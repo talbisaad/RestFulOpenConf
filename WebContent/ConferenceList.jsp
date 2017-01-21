@@ -12,48 +12,47 @@
 
 <title>List of conferences</title>
 </head>
-<body>	
+<body>
 
-	 <div class="header">
+	<div class="header">
 		<ul>
 			<li><a href="#" class="dcnx">Deconnexion</a></li>
 		</ul>
 	</div>
-	
-	<div class="inner"> 
+
+	<div class="inner">
 		<div class="opr">
 			<jsp:include page="menuAdmin.jsp"></jsp:include>
 		</div>
-		 <form action="ConferenceList" method="POST">
-		<br> <br> <span class="ttl">List of conferences</span><br>
-		<br>
-		<br>
-		<div class="tables">
-			<table cellpadding="0" cellspacing="0" class="tabs">
-				<thead>
-					<tr>
-						<td>Conference Name</td>
-						<td>Subject</td>
-						<td>Day</td>
-						<td>Time</td>
-						<td>Participants</td>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach begin="0" end="${lengh}" step="1" varStatus="loopCounter" items="${conferencelist}" var="c">
+		<form action="ConferenceList" method="POST">
+			<br> <br> <span class="ttl">List of conferences</span><br>
+			<br> <br>
+			<div class="tables">
+				<table cellpadding="0" cellspacing="0" class="tabs">
+					<thead>
 						<tr>
-
-							<td ><c:out  value="${c.conferanceName}"/></td>
-							<td><c:out value="${c.conferenceSubject}"/></td>
-							<td><c:out value="${c.time}"/></td>
-							<td><c:out value="${c.participantNumber}"/></td>
-							<td><c:out value="${c.actualparticipantNumber}"/></td>
-							
+							<td>Conference Name</td>
+							<td>Subject</td>
+							<td>Day</td>
+							<td>Participants</td>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
+					</thead>
+					<tbody>
+						<c:forEach begin="0" end="${lengh}" step="1"
+							varStatus="loopCounter" items="${conferencelist}" var="c">
+							<tr>
+
+								<td><c:out value="${c.conferanceName}" /></td>
+								<td><c:out value="${c.conferenceSubject}" /></td>
+								<td><c:out value="${c.time}" /></td>
+								<td><c:out value="${c.participantNumber}" /></td>
+
+
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
 		</form>
 	</div>
 </body>

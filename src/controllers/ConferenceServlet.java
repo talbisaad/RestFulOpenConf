@@ -68,14 +68,7 @@ public class ConferenceServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-<<<<<<< HEAD
-		
-		//list - methode;
-		//request?set
- 
-=======
 
->>>>>>> 3906eeff8c2f64b669724961c1c4a013b3c27921
 	}
 
 }

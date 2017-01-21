@@ -91,7 +91,7 @@ public class SubmissionServlet extends HttpServlet {
 			
 			//affichage de la liste des submissions
 			ArrayList<Submission> SubmissionList= new ArrayList<Submission>();
-			SubmissionList=submissionService.getSubmissionList(request);
+			SubmissionList=submissionService.getSubmissionListByConferenceSubject(request);
 			request.setAttribute("SubmissionList",SubmissionList );
 			request.setAttribute("lengh", SubmissionList.size());
 			
@@ -123,11 +123,7 @@ public class SubmissionServlet extends HttpServlet {
 			 break;
 			 
 		  case DELETESUBMISSION:
-			  conferenceList= new ArrayList<Conference>();
-				conferenceService= new ConferenceServiceImpl();
-				conferenceList=conferenceService.DisplayConferenceList();
-				request.setAttribute("conferencelist", conferenceList);
-				request.setAttribute("lengh",conferenceList.size());	
+			  	submissionService.deleteSublission(request);
 				this.getServletContext().getRequestDispatcher("/DisplaySubmission.jsp").forward(request, response);
 			  break;
 			

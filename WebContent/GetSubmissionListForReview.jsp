@@ -88,13 +88,9 @@
 							<td><c:out value="${c.status}" /></td>
 							  <td><button style="border:0px solid black; background-color: transparent;" type="submit" name="Modifier"><img alt="modify" class="modifyicone"
 								src="CSS/modify.png"></button>
-<<<<<<< HEAD
-								<input type="hidden" name="IdRow" value="${c.idSubmission}"/>
-								</form></td>							 
-=======
+
 								<input type="hidden" name="idSubmission" value="${c.idSubmission}"/>
 								</td>							 
->>>>>>> e7d5ea9308fcd589dbba789d5320f70ea3439c7f
 						</tr>
 					</c:forEach>
 				</tbody>

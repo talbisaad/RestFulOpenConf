@@ -83,13 +83,10 @@ public class SubmissionServiceImpl implements SubmissionService{
 		return sub;
 	} 
 
-<<<<<<< HEAD
-	public ArrayList<Submission> getSubmissionListByConferenceSubject(HttpServletRequest request) {
-=======
+ 
 	
 @Override
 public ArrayList<Submission> getSubmissionListByConferenceSubject(HttpServletRequest request) {
->>>>>>> e7d5ea9308fcd589dbba789d5320f70ea3439c7f
 		
 		String conferenceSubject = request.getParameter("conferenceSubject");
 		
@@ -121,18 +118,13 @@ public ArrayList<Submission> getSubmissionListByConferenceSubject(HttpServletReq
 		
 		//il me faut l'id de la submission en question.
 		
-<<<<<<< HEAD
-		JSONObject connexion = ConnectRest.connect();
-		 UtileSubmission.updateSubmissionByReviewer(submissionId, connexion);
-
-=======
+ 
 		Submission s= new Submission();
 		s.setIdSubmission(request.getParameter("submissionId"));
 		s.setStatus(request.getParameter("droit"));
 		s.setGrad(request.getParameter("Grad"));
 		s.setReviewComments(request.getParameter("Comments"));
 				
->>>>>>> e7d5ea9308fcd589dbba789d5320f70ea3439c7f
 		
 		JSONObject connexion = ConnectRest.connect();
 		JSONObject responseAddSubmission = UtileSubmission.updateSubmissionByReviewer(s, connexion);
@@ -141,7 +133,6 @@ public ArrayList<Submission> getSubmissionListByConferenceSubject(HttpServletReq
 		
 	}
 
-<<<<<<< HEAD
 	@Override
 	public HttpServletRequest getSubmissionListById(HttpServletRequest request) {
 
@@ -172,9 +163,7 @@ public ArrayList<Submission> getSubmissionListByConferenceSubject(HttpServletReq
 		
 		return request;
 	}
-=======
 	
->>>>>>> e7d5ea9308fcd589dbba789d5320f70ea3439c7f
 
 	@Override
 	public Submission getSubmission() {
@@ -207,25 +196,23 @@ public ArrayList<Submission> getSubmissionListByConferenceSubject(HttpServletReq
 	@Override
 	public HttpServletRequest deleteSubmission(HttpServletRequest request) {
 		
-<<<<<<< HEAD
 		
-		
-		
-		return null;
-	}
-
-	
-
-	
-=======
 		String idToDelete = submission.getIdSubmission();
 		JSONObject connexion = ConnectRest.connect();
 		UtileSubmission.deleteSubmission(idToDelete, connexion);
-
+		
 		return null;
 	}
 
->>>>>>> e7d5ea9308fcd589dbba789d5320f70ea3439c7f
+	 
+
+	
+
+	
+	
+
+		 
+
 
 	 
 

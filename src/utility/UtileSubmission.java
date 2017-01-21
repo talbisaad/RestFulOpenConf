@@ -24,10 +24,7 @@ public  class UtileSubmission {
 	
 	public static ArrayList<Submission> submissionList = new ArrayList<Submission>();
 	public static Submission submission;
-	
-	public  static ArrayList<String> submissionThemes= new ArrayList<String>();
-	private static JSONObject json;
-	
+	 
 	public static String submissionId;
 	public static String name;
 	public static String theme;
@@ -186,15 +183,7 @@ public  class UtileSubmission {
 		
 	}
 
-	
-
-<<<<<<< HEAD
-=======
-	
-	
-	
->>>>>>> e7d5ea9308fcd589dbba789d5320f70ea3439c7f
-
+	 
 	public static JSONObject addSubmission(Submission submission, JSONObject data) {
 		
 		
